@@ -15,7 +15,7 @@ app = Flask(__name__)
 # connecte à la BDD, affecte le mode dictionnaire aux résultats de requêtes et renvoie un curseur
 def connection_bdd():
 	
-	con = lite.connect('exemples.db')
+	con = lite.connect('BDD.db')
 	con.row_factory = lite.Row
 	
 	return con
@@ -41,8 +41,20 @@ def Accueil():
 	con = connection_bdd()
 	
 	return render_template('Accueil.html') # utilisation du template html accueil
-	
-	
+
+def reset_bdd():
+	con = lite.connect('BDD.db')
+	con.row_factory = lite.Row
+	cur = con.cursor()
+	cur.execute("DELETE FROM COMMANDE") #remet à zéro la table
+	con.commit()
+	cur.execute("UPDATE PIECES SET stock='' ") #remet à jour la table
+	con.commit()
+	lignes = cur.fetchall()
+	con.close()
+
+reset_bdd()
+
 # ---------------------------------------
 # Lancer le serveur web local Flask
 # ---------------------------------------
