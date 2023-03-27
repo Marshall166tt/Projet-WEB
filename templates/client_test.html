@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="CSS_client.css">
-<script src="compteur.js"> </script>
+<link rel="stylesheet" href="C:\Users\agali\Documents\GitHub\Projet-WEB\static\CSS_client.css">
+<script src="C:\Users\agali\Documents\GitHub\Projet-WEB\compteur.js"> </script>
 <title>Accueil - Client </title>
 </head>
 
@@ -14,43 +14,53 @@
   <h1><center><i>BIENVENUE sur la page client</center></i></h1> 
   <h2><center>Votre satisfaction est notre priorité n°1 !</center></h2>
   </div> 
-</header>
+ </header>
 
  <!-- on crée la boite permettant de passer une commande -->
  <div>
  <form action='{{ url_for("Insertion_vehicule") }}' method='POST'>
  <fieldset> 
   <legend><h3>Préparation de la commande</h3></legend>
-  <link rel="stylesheet" href="CCS_button_client.css">
+  <link rel="stylesheet" href="C:\Users\agali\Documents\GitHub\Projet-WEB\static\CCS_button_client.css">
  
-  <center><img src="./images/CCF.png"></center>
-  <div class="counter">  <!-- création des boutons de choix véhicule -->
-    <button class="minus">-</button>
-    <span class="count">0</span>
-    <button class="plus">+</button>
+  <!-- création des boutons de choix véhicule -->
+  <center><img src="C:\Users\agali\Documents\GitHub\Projet-WEB\images\CCF.png"></center>
+  <div> 
+    <center> 
+    <p>Nombre de CCF voulue:</p>
+    <input type="number" name="nb_CCF" min="1">
+    </center>
   </div>
 
-  <center><img src="./images/CCO.png"></center>
-  <div class="counter">
-    <button class="minus">-</button>
-    <span class="count">0</span>
-    <button class="plus">+</button>
+ <br><br>
+
+  <center><img src="C:\Users\agali\Documents\GitHub\Projet-WEB\images\CCO.png"></center>
+  <div> 
+    <center> 
+    <p>Nombre de CCO voulue:</p>
+    <input type="number" name="nb_CCO" min="1">
+    </center>
   </div>
 
-  <center><img src="./images/CLF.png"></center>
-  <div class="counter">
-    <button class="minus">-</button>
-    <span class="count">0</span>
-    <button class="plus">+</button>
+  <br><br>
+
+  <center><img src="C:\Users\agali\Documents\GitHub\Projet-WEB\images\CLF.png"></center>
+  <div> 
+    <center> 
+    <p>Nombre de CLF voulue:</p>
+    <input type="number" name="nb_CLF" min="1">
+    </center>
   </div>
 
-  <center><img src="./images/CLO.png"></center>
-  <div class="counter">
-    <button class="minus">-</button>
-    <span class="count">0</span>
-    <button class="plus">+</button>
+  <br><br>
+
+  <center><img src="C:\Users\agali\Documents\GitHub\Projet-WEB\images\CLO.png"></center>
+  <div> 
+    <center> 
+    <p>Nombre de CLO voulue:</p>
+    <input type="number" name="nb_CLO" min="1">
+    </center>
   </div>
- 
   <br>
   <br> 
 
@@ -84,6 +94,7 @@ Etat de la livraison :
   </form>
 </div>
 </div>
+
 
 <footer>
  <h3><center>Nos filiales partenaires Agi Log, Agi Lean et Agi Parts sont fières d'être à votre service </center></h3>
