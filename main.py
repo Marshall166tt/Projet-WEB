@@ -22,15 +22,15 @@ def Accueil():
 
 @app.route('/AgiLean')
 def AgiLean():
-	return
+	return render_template('AgiLean.html')
 
 @app.route('/AgiLog')
 def AgiLog():
-	return
+	return render_template('AgiLog.html')
 
 @app.route('/AgiParts')
 def AgiParts():
-	return
+	return render_template('AgiParts.html')
 
 
 # ---------------------------------------
