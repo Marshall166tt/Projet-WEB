@@ -1,0 +1,16 @@
+.button-container {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.button-container:nth-child(n+3) {
+  margin-top: 20px;
+}
+
+button {
+  display: block;
+  width: 100px;
+  height: 50px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}

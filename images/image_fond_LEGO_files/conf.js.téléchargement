@@ -1,0 +1,11 @@
+if(window.mics && window.mics._call){
+  mics._call("cn-vogue17", 'setConfig',[{"enable_local_segment_evaluation":false,"segment_definition_uri":null,"enable_apx_matching":true,"enable_goo_matching":true,"enable_tcf_v2_for_cookie_matching":false,"enable_id5":false,"namespace":null,"site_token":"cn-vogue17"}])
+} else if(window.mics && window.mics._setConfig){
+  mics._setConfig({"enable_local_segment_evaluation":false,"segment_definition_uri":null,"enable_apx_matching":true,"enable_goo_matching":true,"enable_tcf_v2_for_cookie_matching":false,"enable_id5":false,"namespace":null,"site_token":"cn-vogue17"})
+}
+
+if (window.mics && window.mics._call) {
+    mics._call("cn-vogue17", 'markConfigAsLoaded', [])
+} else if (window.mics && window.mics._markConfigAsLoaded) {
+    mics._markConfigAsLoaded()
+}

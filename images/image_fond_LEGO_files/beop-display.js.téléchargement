@@ -1,0 +1,38 @@
+"use strict";
+(function (direct_teads_page, hb_teads_page, hb_teads_placement, nexx_tag, floor, sl_n) {
+    const slotClassName = "sl_" + direct_teads_page;
+    const script = document.createElement("script");
+    script.async = true;
+    script.classList.add("teads");
+    script.src = "//a.teads.tv/page/" + direct_teads_page + "/tag";
+    const parentEl = document.querySelector("#" + sl_n);
+    if (parentEl) {
+        parentEl.appendChild(script);
+        parentEl.classList.add(slotClassName);
+        window["beOpDisplay"] = function (selectorClassName) {
+            if (!selectorClassName) {
+                selectorClassName = "";
+            }
+            const scriptNexx = document.createElement("script");
+            scriptNexx.async = true;
+            scriptNexx.classList.add("nexx360");
+            scriptNexx.setAttribute("nexx360-beop-script", "");
+            scriptNexx.src =
+                "https://cdn.nexx360.io/beop-loader.js?tag_id=" +
+                    nexx_tag +
+                    "&teads_page_id=" +
+                    hb_teads_page +
+                    "&teads_placement_id=" +
+                    hb_teads_placement +
+                    "&bid_floor=" +
+                    floor;
+            const identifiedParent = document.querySelector("." + "sl_" + selectorClassName);
+            if (identifiedParent) {
+                identifiedParent.appendChild(scriptNexx);
+            }
+            else {
+                parentEl.appendChild(scriptNexx);
+            }
+        };
+    }
+})("157636", "158774", "173343", "5fce01b1", "0.3", "slot_0");

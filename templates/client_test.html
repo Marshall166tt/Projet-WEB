@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="CSS_client.css">
+<script src="compteur.js"> </script>
+<title>Accueil - Client </title>
+</head>
+
+
+<body>
+
+ <header>
+  <div class="cadre">
+  <h1><center><i>BIENVENUE sur la page client</center></i></h1> 
+  <h2><center>Votre satisfaction est notre priorité n°1 !</center></h2>
+  </div> 
+</header>
+
+ <!-- on crée la boite permettant de passer une commande -->
+ <div>
+ <form action='{{ url_for("Insertion_vehicule") }}' method='POST'>
+ <fieldset> 
+  <legend><h3>Préparation de la commande</h3></legend>
+  <link rel="stylesheet" href="CCS_button_client.css">
+ 
+  <center><img src="./images/CCF.png"></center>
+  <div class="counter">  <!-- création des boutons de choix véhicule -->
+    <button class="minus">-</button>
+    <span class="count">0</span>
+    <button class="plus">+</button>
+  </div>
+
+  <center><img src="./images/CCO.png"></center>
+  <div class="counter">
+    <button class="minus">-</button>
+    <span class="count">0</span>
+    <button class="plus">+</button>
+  </div>
+
+  <center><img src="./images/CLF.png"></center>
+  <div class="counter">
+    <button class="minus">-</button>
+    <span class="count">0</span>
+    <button class="plus">+</button>
+  </div>
+
+  <center><img src="./images/CLO.png"></center>
+  <div class="counter">
+    <button class="minus">-</button>
+    <span class="count">0</span>
+    <button class="plus">+</button>
+  </div>
+ 
+  <br>
+  <br> 
+
+  <!-- création des boutons choix des accessoires -->
+    <center><input type="checkbox" name="001" value="True">001 - Attache accessoire</center><br>
+    <center><input type="checkbox" name="100" value="True">100 - Antenne</center><br>
+    <center><input type="checkbox" name="010" value="True">010 - Crochet d'attelage</center><br>
+  <br>
+  <input type="submit" name="envoyer">
+ </fieldset>
+ </form>
+ </div>
+
+<!-- création de la boite de validation commande -->
+<div>
+  <form action='{{ url_for("Reception_vehicule") }}' method='POST'>
+  <fieldset>
+    <legend><h3>Accuser la réception commande</h3></legend>
+  Numéro de commande:<br>
+  <input type="number" name="Numero" min="1"><br>
+  <br>
+Etat de la livraison : 
+<select name="vehicule">
+<option value="Livraison valide">Livraison valide</option>
+<option value="Livraison non valide">Livraison non valide</option>
+</select>
+<br>
+<br>
+<input type="submit" name="valider">
+  </fieldset>
+  </form>
+</div>
+</div>
+
+<footer>
+ <h3><center>Nos filiales partenaires Agi Log, Agi Lean et Agi Parts sont fières d'être à votre service </center></h3>
+ <p><center>&copy; 2023 AM Aix-en-Provence</center></p>
+</footer>
+
+</body>
+
+
+</html>
