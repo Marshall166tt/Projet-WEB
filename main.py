@@ -20,6 +20,10 @@ def Accueil():
 #	con = connection_bdd()
 	return render_template('Accueil.html') # utilisation du template html accueil
 
+@app.route('/')
+def Client():
+	return render_template('Client.html')
+
 @app.route('/AgiLean')
 def AgiLean():
 	return render_template('AgiLean.html')
