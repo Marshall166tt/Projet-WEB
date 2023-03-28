@@ -18,20 +18,19 @@ app = Flask(__name__)
 @app.route('/')
 def Accueil():
 #	con = connection_bdd()
-	
 	return render_template('Accueil.html') # utilisation du template html accueil
 
 @app.route('/AgiLean')
 def AgiLean():
 	return render_template('AgiLean.html')
 
-#@app.route('/AgiLog')
-#def AgiLog():
-#	return render_template('AgiLog.html')
+@app.route('/AgiLog')
+def AgiLog():
+	return render_template('AgiLog.html')
 
-#@app.route('/AgiParts')
-#def AgiParts():
-#	return render_template('AgiParts.html')
+@app.route('/AgiParts')
+def AgiParts():
+	return render_template('AgiParts.html')
 
 
 # ---------------------------------------
