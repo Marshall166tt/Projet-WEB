@@ -66,7 +66,7 @@
           <center><input type="checkbox" name="100" value="True">100 - Antenne</center><br>
           <center><input type="checkbox" name="010" value="True">010 - Crochet d'attelage</center><br>
           <br>
-          <input type="submit" name="envoyer">
+          <input type="submit" name="envoyer" value="Envoyer la commande">
         </fieldset>
       </form>
     </div>
@@ -76,6 +76,34 @@
       <form action='{{ url_for("Reception_vehicule") }}' method='POST'>
         <fieldset>
           <legend><h3>Accuser la réception commande</h3></legend>
+          <div class="grid-container2">
+            <div>
+            <table>
+              <tr>
+                <th>N° Commande</th>
+                <th>Date Commande Client</th>
+                <th>Modèle</th>
+                <th>Option</th>
+                <th>Etat</th>
+                <th>Satisfaction client</th>
+              </tr>
+              
+            {% for element in commandes %}
+        		<tr class="lp_ligne">
+          			<td class="lp_cellule">{{ element['id'] }}</td>
+                    <td class="lp_cellule">{{ element['temps_commande_client'] }}</td>
+                    <td class="lp_cellule">{{ element['modele'] }}</td>
+                    <td class="lp_cellule">{{ element['option'] }}</td>
+                    <td class="lp_cellule">{{ element['etat_agilean'] }}</td>
+                    <td class="lp_cellule">{{ element['etat_client'] }}</td>
+        		</tr>
+      		{% endfor %}  
+                
+           </table>
+           </div>
+           
+          <br><br>
+          
           Numéro de commande:<br>
           <input type="number" name="numero_commande" min="1"><br>
           <br>
@@ -85,7 +113,7 @@
           <option value="Livraison non valide">Livraison non valide</option>
           </select>
           <br><br>
-          <input type="submit" name="valider">
+          <input type="submit" name="valider" value="Mettre à jour">
         </fieldset>
       </form>
     </div>
