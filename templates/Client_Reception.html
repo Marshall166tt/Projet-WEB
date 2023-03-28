@@ -15,13 +15,13 @@
 
     <!-- on crée la boite permettant de passer une commande -->
     <div>
-      <form action='{{ url_for("Insertion_vehicule") }}' method='POST'>
+      <form action='{{ url_for("AgiLean_Information") }}' method='POST'>
         <fieldset>
           <legend><h3>Préparation de la commande</h3></legend>
-          <link rel="stylesheet" href="C:\Users\agali\Documents\GitHub\Projet-WEB\static\CCS_button_client.css">
+          <link rel="stylesheet" href="/static/CCS_button_client.css">
         
           <!-- création des boutons de choix véhicule -->
-          <center><img src="C:\Users\agali\Documents\GitHub\Projet-WEB\images\CCF.png"></center>
+          <center><img src='{{ url_for("static", filename="images/CCF.png") }}'></center>
           <div> 
             <center> 
             <p>Nombre de CCF voulue:</p>
@@ -31,7 +31,7 @@
 
           <br><br>
 
-          <center><img src="C:\Users\agali\Documents\GitHub\Projet-WEB\images\CCO.png"></center>
+          <center><img src='{{ url_for("static", filename="images/CCO.png") }}'></center>
           <div> 
             <center> 
             <p>Nombre de CCO voulue:</p>
@@ -41,7 +41,7 @@
 
           <br><br>
 
-          <center><img src="C:\Users\agali\Documents\GitHub\Projet-WEB\images\CLF.png"></center>
+          <center><img src='{{ url_for("static", filename="images/CLF.png") }}'></center>
           <div> 
             <center> 
             <p>Nombre de CLF voulue:</p>
@@ -51,7 +51,7 @@
 
           <br><br>
 
-          <center><img src="C:\Users\agali\Documents\GitHub\Projet-WEB\images\CLO.png"></center>
+          <center><img src='{{ url_for("static", filename="images/CLO.png") }}'></center>
           <div> 
             <center> 
             <p>Nombre de CLO voulue:</p>
@@ -73,7 +73,7 @@
 
     <!-- création de la boite de validation commande -->
     <div>
-      <form action='{{ url_for("Reception_vehicule") }}' method='POST'>
+      <form action='{{ url_for("AgiLean_Information") }}' method='POST'>
         <fieldset>
           <legend><h3>Accuser la réception commande</h3></legend>
           <div class="grid-container2">
