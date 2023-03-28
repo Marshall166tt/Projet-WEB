@@ -24,15 +24,15 @@ def Accueil():
 def Client():
 	return render_template('Client.html')
 
-@app.route('/AgiLean')
+@app.route('/AgiLean', methods=['GET'])
 def AgiLean():
 	return render_template('AgiLean.html')
 
-@app.route('/AgiLog')
+@app.route('/AgiLog', methods=['GET'])
 def AgiLog():
 	return render_template('AgiLog.html')
 
-@app.route('/AgiParts')
+@app.route('/AgiParts', methods=['GET'])
 def AgiParts():
 	return render_template('AgiParts.html')
 
