@@ -21,9 +21,9 @@ def Accueil():
 	
 	return render_template('Accueil.html') # utilisation du template html accueil
 
-#@app.route('/AgiLean')
-#def AgiLean():
-#	return render_template('AgiLean.html')
+@app.route('/AgiLean')
+def AgiLean():
+	return render_template('AgiLean.html')
 
 #@app.route('/AgiLog')
 #def AgiLog():
