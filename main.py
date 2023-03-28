@@ -40,11 +40,11 @@ def AgiLean_Information():
 
 #Pages AgiLog
 @app.route('/AgiLean_Matiere', methods=['GET'])
-def AgiLean_Matiere():
+def AgiLog_Matiere():
 	return render_template('AgiLean_Matiere.html')
 
 @app.route('/AgiLean_Information', methods=['GET'])
-def AgiLean_Information():
+def AgiLog_Information():
 	return render_template('AgiLean_Information.html')
 
 #Pages AgiParts
