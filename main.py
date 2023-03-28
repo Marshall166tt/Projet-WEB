@@ -20,7 +20,7 @@ def Accueil():
 #	con = connection_bdd()
 	return render_template('Accueil.html') # utilisation du template html accueil
 
-@app.route('/')
+@app.route('/Client', methods=['GET'])
 def Client():
 	return render_template('Client.html')
 
