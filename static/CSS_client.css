@@ -60,3 +60,13 @@ button:hover {
 button:active {
   background-color: #ccc;
 }
+
+.images-container {
+  display: flex;
+  justify-content: space-between; /* pour espacer les images */
+}
+
+.selector-container {
+  display: flex;
+  justify-content: space-between; /* pour espacer les images */
+}
