@@ -8,11 +8,15 @@
   <body>
     <header>
       <div class="cadre">
-      <h1><center><i>BIENVENUE sur la page client</center></i></h1> 
-      <h2><center>Votre satisfaction est notre priorité n°1 !</center></h2>
+        <h1><center><i>BIENVENUE sur la page client</center></i></h1> 
+      < h2><center>Votre satisfaction est notre priorité n°1 !</center></h2>
       </div> 
     </header>
 
+    <div class="grid-container1">
+      <a class = "button1" href={{url_for("Accueil")}}><strong> ACCUEIL </strong></a>
+    </div>
+    
     <!-- on crée la boite permettant de passer une commande -->
     <div>
       <form action='{{ url_for("AgiLean_Information") }}' method='POST'>
