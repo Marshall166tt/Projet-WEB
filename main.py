@@ -51,18 +51,23 @@ def AgiLean_Information():
 	return render_template('AgiLean_Information.html')
 
 #Pages AgiLog
-@app.route('/AgiLean_Matiere', methods=['GET'])
+@app.route('/AgiLog_Matiere', methods=['GET'])
 def AgiLog_Matiere():
-	return render_template('AgiLean_Matiere.html')
+	return render_template('AgiLog_Matiere.html')
 
-@app.route('/AgiLean_Information', methods=['GET'])
+@app.route('/AgiLog_Information', methods=['GET'])
 def AgiLog_Information():
-	return render_template('AgiLean_Information.html')
+	return render_template('AgiLog_Information.html')
 
 #Pages AgiParts
 @app.route('/AgiParts', methods=['GET'])
 def AgiParts():
 	return render_template('AgiParts.html')
+
+#Pages En Savoir Plus
+@app.route('/EnSavoirPlus', methods=['GET'])
+def SavoirPlus():
+	return render_template('EnSavoirPlus.html')
 
 # ---------------------------------------
 # Lancer le serveur web local Flask
