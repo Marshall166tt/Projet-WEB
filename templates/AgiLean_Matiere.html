@@ -24,44 +24,68 @@
         </header>
 
         
-        <!-- création de l'affichage des commandes fournisseurs en attente -->
-    <div>
-        <form action='{{ url_for("AgiLean_Information") }}' method='POST'>
-          <fieldset>
-            <legend><h3>Commandes fournisseur en attente</h3></legend>
-            <div class="grid-container3">
-              <div>
-              <table>
-                <tr>
-                  <th>N° Commande</th>
-                  <th>Date Commande AgiLean</th>
-                  <th>Modèle</th>
-                  <th>Option</th>
-                  <th>Etat</th>
-                  <th>Satisfaction client</th>
-                </tr>
+        <!-- création de l'affichage des kits reçus -->
+        <div>
+            <form action='{{ url_for("AgiLean_Information") }}' method='POST'>
+            <fieldset>
+                <legend><h3>Kits reçus</h3></legend>
+                <div class="grid-container1">
+                <table>
+                    <tr>
+                        <th>N° Commande</th>
+                        <th>Date Commande AgiLean</th>
+                        <th>Modèle</th>
+                        <th>Option</th>
+                        <th>Etat</th>
+                        <th>Satisfaction client</th>
+                    </tr>
                 
-              {% for element in commandes %}
-                  <tr class="lp_ligne">
-                        <td class="lp_cellule">{{ element['id'] }}</td>
-                      <td class="lp_cellule">{{ element['temps_commande_client'] }}</td>
-                      <td class="lp_cellule">{{ element['modele'] }}</td>
-                      <td class="lp_cellule">{{ element['option'] }}</td>
-                      <td class="lp_cellule">{{ element['etat_agilean'] }}</td>
-                      <td class="lp_cellule">{{ element['etat_client'] }}</td>
-                  </tr>
-                {% endfor %}  
+                    {% for element in commandes %}
+                        <tr class="lp_ligne">
+                            <td class="lp_cellule">{{ element['id'] }}</td>
+                            <td class="lp_cellule">{{ element['temps_commande_client'] }}</td>
+                            <td class="lp_cellule">{{ element['modele'] }}</td>
+                            <td class="lp_cellule">{{ element['option'] }}</td>
+                            <td class="lp_cellule">{{ element['etat_agilean'] }}</td>
+                            <td class="lp_cellule">{{ element['etat_client'] }}</td>
+                        </tr>
+                    {% endfor %}  
                   
-             </table>
-             </div>
+                </table>
+                </div>
              
-            <br><br>
+                <br><br>
             
-          </fieldset>
-        </form>
-      </div>
-  
+            </fieldset>
+            </form>
+        </div>
+        
 
+        <!--Création de la boite validation des commandes-->
+        <div>
+            <form action='{{ url_for("AgiLean_Information") }}' method='POST'>
+              <fieldset>
+                <legend><h3>Vérifiez vos kits</h3></legend>
+                <center><p>Veuillez sélectionner la commande à valider</p></center>
+                  
+                  <form>
+                    <center>
+                    <input type="text" name="numero_commande" value="numéro de commande ici">
+                    </center>
+                    <input type="checkbox" name="oui" value="OUI">
+                    <p>OUI</p>
+                    <input type="checkbox" name="non" value="NON">
+                    <p>NON</p>
+                    <br>
+                    <input type="submit" name="envoyer_numero_commande" value="Commander">
+                  </form>
+                  
+              </fieldset>
+            </form>
+        </div>
+
+
+        <br><br>
 
 
         <footer>
