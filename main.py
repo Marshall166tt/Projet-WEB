@@ -14,15 +14,6 @@ app = Flask(__name__)
 
 
 #Remise à zéro base de données
-con = lite.connect('BDD.db')
-con.row_factory = lite.Row
-cur = con.cursor()
-cur.execute("DELETE FROM COMMANDE") #remet à zéro la table
-con.commit()
-cur.execute("UPDATE PIECES SET stock='' ") #remet à jour la table
-con.commit()
-lignes = cur.fetchall()
-con.close()
 
 #Pages Accueil
 @app.route('/')
