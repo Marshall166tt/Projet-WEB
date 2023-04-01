@@ -18,10 +18,6 @@ app = Flask(__name__)
 #Pages Accueil
 @app.route('/')
 def Accueil():
-	con = lite.connect('BDD.db')
-	con.row_factory = lite.Row
-	cur = con.cursor()
-	con.close()
 	return render_template('Accueil.html') # utilisation du template html accueil
 
 #Pages Client
