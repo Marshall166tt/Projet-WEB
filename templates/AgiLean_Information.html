@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="/static/CSS_client.css">
+    <link rel="stylesheet" href="/static/CSS_PW.css">
     <title>Accueil - Client </title>
   </head>
 
@@ -46,6 +46,21 @@
            
           <br><br>
           
+        </fieldset>
+      </form>
+    </div>
+
+    <div>
+      <form action='{{ url_for("AgiLean_Information") }}' method='POST'>
+        <fieldset>
+          <legend><h3>Passer une commande à Agilog</h3></legend>
+          <p><center>Veuillez entrer le numéro de commande client à traiter :</center></p>
+            <center>
+            <form>
+              <input type="text" name="numero_commande" value="Entrer le numéro de commande client à traiter ici">
+              <input type="submit" name="envoyer_numero_commande" value="Commander">
+            </form>
+            </center>
         </fieldset>
       </form>
     </div>
