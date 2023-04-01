@@ -13,6 +13,43 @@
     </header>
 
    
+    <!-- création de l'affichage des commandes clients -->
+    <div>
+      <form action='{{ url_for("AgiLean_Information") }}' method='POST'>
+        <fieldset>
+          <legend><h3>Commandes client en attente</h3></legend>
+          <div class="grid-container2">
+            <div>
+            <table>
+              <tr>
+                <th>N° Commande</th>
+                <th>Date Commande Client</th>
+                <th>Modèle</th>
+                <th>Option</th>
+                <th>Etat</th>
+                <th>Satisfaction client</th>
+              </tr>
+              
+            {% for element in commandes %}
+        		<tr class="lp_ligne">
+          			<td class="lp_cellule">{{ element['id'] }}</td>
+                    <td class="lp_cellule">{{ element['temps_commande_client'] }}</td>
+                    <td class="lp_cellule">{{ element['modele'] }}</td>
+                    <td class="lp_cellule">{{ element['option'] }}</td>
+                    <td class="lp_cellule">{{ element['etat_agilean'] }}</td>
+                    <td class="lp_cellule">{{ element['etat_client'] }}</td>
+        		</tr>
+      		{% endfor %}  
+                
+           </table>
+           </div>
+           
+          <br><br>
+          
+        </fieldset>
+      </form>
+    </div>
+
     <!-- création de la boite liste des commandes -->
     <div>
       <form action='{{ url_for("AgiLean_Information") }}' method='POST'>
@@ -46,16 +83,6 @@
            
           <br><br>
           
-          Numéro de commande:<br>
-          <input type="number" name="numero_commande" min="1"><br>
-          <br>
-          Etat de la livraison : 
-          <select name="select_vehicule">
-          <option value="Livraison valide">Livraison valide</option>
-          <option value="Livraison non valide">Livraison non valide</option>
-          </select>
-          <br><br>
-          <input type="submit" name="valider" value="Mettre à jour">
         </fieldset>
       </form>
     </div>
