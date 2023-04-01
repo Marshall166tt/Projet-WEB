@@ -12,7 +12,6 @@ app = Flask(__name__)
 # Les différentes pages
 # ------------------
 
-
 #Remise à zéro base de données
 
 #Pages Accueil

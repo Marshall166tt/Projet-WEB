@@ -9,6 +9,9 @@
     <header>
       <h1><center> ACCUEIL </center></h1>
       <h2><center> Bienvenue, agilité est mère de sureté ! </center></h2>
+      <a href="/">
+				<img src="/static/images/Logo_Agi.svg">
+			</a>
       <nav>
         <ul>
           <li><a href="Client_Reception"><u>Client</u></a></li>
@@ -21,8 +24,10 @@
     </header>
 
     <main>
-      <p><center>Bienvenue sur la page d'accueil de notre entreprise de production. Veuillez choisir une page à visiter en utilisant la navigation ci-dessus.</center></p>
-	    <center><img src='{{ url_for("static", filename="images/logo INNOVALOG.png") }}'></center>
+      <div class="content">
+        <p><center>Bienvenue sur la page d'accueil de notre entreprise de production. Veuillez choisir une page à visiter en utilisant la navigation ci-dessus.</center></p>
+        <center><img src='{{ url_for("static", filename="images/logo INNOVALOG.png") }}'></center>
+      </div>
     </main>
     
     <footer>
