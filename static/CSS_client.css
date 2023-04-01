@@ -4,13 +4,6 @@ body {
  margin: 0;
 }
 
-.cadre {
-  background-color: white;
-  border: 5px solid red;
-  padding: 5px;
-  border-radius: 5px;
-}
-
 header {
  background-image: url("https://media.gqmagazine.fr/photos/610a5e8dfc0bc6c36d33215d/16:9/w_2560%2Cc_limit/photo-1587654780291-39c9404d746b.jpeg");
  background-color: #333;
@@ -19,53 +12,11 @@ header {
  text-align: center
 }
 
-footer {
- background-image: url("https://media.gqmagazine.fr/photos/610a5e8dfc0bc6c36d33215d/16:9/w_2560%2Cc_limit/photo-1587654780291-39c9404d746b.jpeg");
- background-color: #333;
- color: black;
- padding: 10px;
- text-align: center
- ;
-}
-
-.counter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 10px;
-}
-
-.count {
-  font-size: 20px;
-  font-weight: bold;
-  margin: 0 10px;
-}
-
-button {
-  background-color: #eee;
-  border: none;
-  padding: 10px 15px;
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #ddd;
-}
-
-button:active {
-  background-color: #ccc;
-}
-
-.images-container {
-  display: flex;
-  justify-content: space-between; /* pour espacer les images */
-}
-
-.selector-container {
-  display: flex;
-  justify-content: space-between; /* pour espacer les images */
+.cadre {
+  background-color: white;
+  border: 5px solid red;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 nav ul {
@@ -89,4 +40,23 @@ nav a {
 nav a:hover {
   background-color: #fff;
   color: #333;
+}
+
+.images-container {
+  display: flex;
+  justify-content: space-between; /* pour espacer les images */
+}
+
+.selector-container {
+  display: flex;
+  justify-content: space-between; /* pour espacer les images */
+}
+
+footer {
+ background-image: url("https://media.gqmagazine.fr/photos/610a5e8dfc0bc6c36d33215d/16:9/w_2560%2Cc_limit/photo-1587654780291-39c9404d746b.jpeg");
+ background-color: #333;
+ color: black;
+ padding: 10px;
+ text-align: center
+ ;
 }
