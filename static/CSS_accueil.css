@@ -1,61 +1,52 @@
 body {
- font-family: Covington, cursive;
- background-color: #f0f0f0;
- margin: 0;
-}
-
-.cadre {
-  background-color: white;
-  border: 5px solid red;
-  padding: 5px;
-  border-radius: 5px;
-}
-
-
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+ }
+ 
 header {
- background-image: url("https://media.gqmagazine.fr/photos/610a5e8dfc0bc6c36d33215d/16:9/w_2560%2Cc_limit/photo-1587654780291-39c9404d746b.jpeg");
- background-color: #333;
- color: black;
- padding: 30px;
- text-align: center
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
 }
-
-
-footer {
- background-color: #333;
- color: black;
- padding: 10px;
- text-align: center
- ;
-}
-
-
-.counter {
+ 
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
   display: flex;
-  align-items: center;
+  text-decoration: underline;
+}
+ 
+nav li {
+  margin-right: 10px;
+}
+ 
+nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 5px;
+}
+ 
+nav a:hover {
+  background-color: #fff;
+  color: #333;
+}
+ 
+main {
+  padding: 20px;
+}
+ 
+footer {
+  left: 0;
+  bottom: 0;
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+ 
+ul {
+  display: flex;
   justify-content: center;
-  margin-bottom: 10px;
-}
-
-.count {
-  font-size: 20px;
-  font-weight: bold;
-  margin: 0 10px;
-}
-
-button {
-  background-color: #eee;
-  border: none;
-  padding: 10px 15px;
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #ddd;
-}
-
-button:active {
-  background-color: #ccc;
 }
