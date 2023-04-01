@@ -8,14 +8,15 @@
   <body>
     <header>
       <div class="cadre">
-        <h1><center><i>BIENVENUE sur la page client</center></i></h1> 
+        <h1><center><i>Bienvenue sur la page Client</center></i></h1> 
         <h2><center>Votre satisfaction est notre priorité n°1 !</center></h2>
       </div> 
+      <nav>
+        <ul>
+          <li><a class = "button1" href={{url_for("Accueil")}}><strong> Retour vers l'accueil </strong></a></li>
+        </ul>
+      </nav>
     </header>
-
-    <div class="grid-container1">
-      <a class = "button1" href={{url_for("Accueil")}}><strong> Retour vers l'accueil </strong></a>
-    </div>
     
     <!-- on crée la boite permettant de passer une commande -->
     <div>
@@ -28,9 +29,6 @@
             <img src='{{ url_for("static", filename="images/CLF.png") }}'>
             <img src='{{ url_for("static", filename="images/CLO.png") }}'>
           </div>
-          <link rel="stylesheet" href="/static/CCS_button_client.css">
-
-
 
           <br><br>
 
@@ -59,7 +57,6 @@
         <fieldset>
           <legend><h3>Accuser la réception commande</h3></legend>
           <div class="grid-container2">
-            <div>
             <table>
               <tr>
                 <th>N° Commande</th>
@@ -70,32 +67,35 @@
                 <th>Satisfaction client</th>
               </tr>
               
-            {% for element in commandes %}
-        		<tr class="lp_ligne">
-          			<td class="lp_cellule">{{ element['id'] }}</td>
-                    <td class="lp_cellule">{{ element['temps_commande_client'] }}</td>
-                    <td class="lp_cellule">{{ element['modele'] }}</td>
-                    <td class="lp_cellule">{{ element['option'] }}</td>
-                    <td class="lp_cellule">{{ element['etat_agilean'] }}</td>
-                    <td class="lp_cellule">{{ element['etat_client'] }}</td>
-        		</tr>
-      		{% endfor %}  
-                
-           </table>
-           </div>
+              {% for element in commandes %}
+              <tr class="lp_ligne">
+                  <td class="lp_cellule">{{ element['id'] }}</td>
+                      <td class="lp_cellule">{{ element['temps_commande_client'] }}</td>
+                      <td class="lp_cellule">{{ element['modele'] }}</td>
+                      <td class="lp_cellule">{{ element['option'] }}</td>
+                      <td class="lp_cellule">{{ element['etat_agilean'] }}</td>
+                      <td class="lp_cellule">{{ element['etat_client'] }}</td>
+              </tr>
+              {% endfor %}
+
+            </table>
+          </div>
            
           <br><br>
           
-          Numéro de commande:<br>
-          <input type="number" name="numero_commande" min="1"><br>
-          <br>
-          Etat de la livraison : 
-          <select name="select_vehicule">
-          <option value="Livraison valide">Livraison valide</option>
-          <option value="Livraison non valide">Livraison non valide</option>
-          </select>
-          <br><br>
-          <input type="submit" name="valider" value="Mettre à jour">
+          <div>
+            Numéro de commande:<br>
+            <input type="number" name="numero_commande" min="1"><br>
+            <br>
+            Etat de la livraison : 
+            <select name="select_vehicule">
+              <option value="Livraison valide">Livraison valide</option>
+              <option value="Livraison non valide">Livraison non valide</option>
+            </select>
+            <br><br>
+            <input type="submit" name="valider" value="Mettre à jour">
+          </div>
+          
         </fieldset>
       </form>
     </div>
