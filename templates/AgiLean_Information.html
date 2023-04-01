@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="/static/CSS_PW.css">
+    <link rel="stylesheet" href="/static/CSS_AgiLean.css">
     <title>Accueil - Client </title>
   </head>
 
   <body>
     <header>
       <div class="cadre">
-        <h1><center><i>Bienvenue dans l'espace AgiLean</center></i></h1> 
+        <h1><center><i>Bienvenue dans l'espace information de AgiLean</center></i></h1> 
       </div> 
-      <div class="grid-container1">
+      
+      <nav>
+        <ul>
         <center>
         <a class = "button_accueil" href={{url_for("Accueil")}}> Retour vers l'accueil </a>
         <br>
+        <br>
         <a class = "button_AgiLean_Matière" href={{url_for("AgiLean_Matiere")}}> Retour vers AgiLean Matière </a>
         </center>
-      </div>
+        </ul>
+      </nav>
+       
     </header>
 
    
@@ -46,7 +51,7 @@
                     <td class="lp_cellule">{{ element['etat_agilean'] }}</td>
                     <td class="lp_cellule">{{ element['etat_client'] }}</td>
         		</tr>
-      		{% endfor %}  
+      		  {% endfor %}  
                 
            </table>
            </div>
@@ -64,7 +69,7 @@
           <p><center>Veuillez entrer le numéro de commande client à traiter :</center></p>
             <center>
             <form>
-              <input type="text" name="numero_commande" value="Entrer le numéro de commande client à traiter ici">
+              <input type="text" name="numero_commande" value="numéro de commande ici">
               <input type="submit" name="envoyer_numero_commande" value="Commander">
             </form>
             </center>
@@ -76,13 +81,13 @@
     <div>
       <form action='{{ url_for("AgiLean_Information") }}' method='POST'>
         <fieldset>
-          <legend><h3>Commandes client en attente</h3></legend>
-          <div class="grid-container2">
+          <legend><h3>Commandes fournisseur en attente</h3></legend>
+          <div class="grid-container3">
             <div>
             <table>
               <tr>
                 <th>N° Commande</th>
-                <th>Date Commande Client</th>
+                <th>Date Commande AgiLean</th>
                 <th>Modèle</th>
                 <th>Option</th>
                 <th>Etat</th>
