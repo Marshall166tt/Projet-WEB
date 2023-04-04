@@ -26,23 +26,31 @@ nav ul {
   margin: 0;
   padding: 0;
   text-decoration: underline;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  font-size: 20px;
+  font-family: sans-serif;
 }
- 
+
 nav li {
   margin-right: 10px;
 }
- 
+
 nav a {
-  color: rgb(255, 255, 255);
+  color: #333;
   text-decoration: none;
-  padding: 5px;
+  padding: 10px;
 }
- 
+
 nav a:hover {
-  background-color: #fff;
+  background-color: #eee;
   color: #333;
 }
- 
+
+
 main {
   padding: 20px;
   flex-grow: 1;
