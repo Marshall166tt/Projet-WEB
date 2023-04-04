@@ -10,8 +10,8 @@ body {
   flex-direction: column;
  }
 
-header {
-  background-color: rgb(224, 10, 10);
+ header {
+  background: linear-gradient(to bottom, #f30d0d, #030202);
   color: #fff;
   padding: 10px;
 }
@@ -25,7 +25,6 @@ nav ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  text-decoration: underline;
   display: flex;
   justify-content: center;
   align-items: center;
