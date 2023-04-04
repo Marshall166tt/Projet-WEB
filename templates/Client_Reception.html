@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='CSS_Client.css') }}">
+    <link rel="stylesheet" href='{{ url_for("static", filename="CSS_Client.css")}}'>
     <title>Accueil - Client </title>
   </head>
 
@@ -13,14 +13,14 @@
       </div> 
       <nav>
         <ul>
-          <li><a class = "button1" href={{url_for("Accueil")}}><strong> Retour vers l'accueil </strong></a></li>
+          <li><a class = "button1" href='{{url_for("Accueil")}}'><strong> Retour vers l'accueil </strong></a></li>
         </ul>
       </nav>
     </header>
     
     <!-- on crée la boite permettant de passer une commande -->
     <div>
-      <form action='{{ url_for("AgiLean_Information") }}' method='POST'>
+      <form action='{{ url_for("AgiLean_Information")}}' method='POST'>
         <fieldset>
           <legend><h3>Préparation de la commande</h3></legend>
           <div class="images-container">
@@ -53,7 +53,7 @@
 
     <!-- création de la boite de validation commande -->
     <div>
-      <form action='{{ url_for("AgiLean_Information") }}' method='POST'>
+      <form action='{{ url_for("AgiLean_Information")}}' method='POST'>
         <fieldset>
           <legend><h3>Accuser la réception commande</h3></legend>
           <div class="grid-container2">
