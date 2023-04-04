@@ -2,19 +2,110 @@
 <html>
     <head>
         <link rel="stylesheet" href="{{ url_for('static', filename='CSS_PW.css')}}">
-        <script src=""></script>
         <title> Espace AgiParts </title>
     </head>
 
     <body>
-        <header>
-            <div class="cadre">
-                <h1><center>Bienvenue dans l'espace AgiParts</center></h1>
-            </div>
-        </header>
 
-        <div class="grid-container1">
-            <a class = "button1" href={{url_for("Accueil")}}><strong> ACCUEIL </strong></a>
+    <header>
+        <div class="cadre">
+            <h1><center>Bienvenue dans l'espace AgiParts</center></h1>
         </div>
+        <nav>
+            <ul>
+            <center>
+                <a class = "button_accueil" href='{{url_for("Accueil")}}'><strong> Retour vers l'accueil </strong></a>
+            </center>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- création de la boite commandes Agilog en attente -->
+    <div>
+        <form action='{{ url_for("AgiParts") }}' method='POST'>
+        <fieldset>
+            <legend><h3>Kits reçus</h3></legend>
+            <div class="grid-container1">
+            <table>
+                <tr>
+                    <th>N° Commande</th>
+                    <th>Date Commande AgiLean</th>
+                    <th>Modèle</th>
+                    <th>Option</th>
+                    <th>Etat</th>
+                    <th>Satisfaction client</th>
+                </tr>
+            
+                {% for element in commandes %}
+                    <tr class="lp_ligne">
+                        <td class="lp_cellule">{{ element['id'] }}</td>
+                        <td class="lp_cellule">{{ element['temps_commande_client'] }}</td>
+                        <td class="lp_cellule">{{ element['modele'] }}</td>
+                        <td class="lp_cellule">{{ element['option'] }}</td>
+                        <td class="lp_cellule">{{ element['etat_agilean'] }}</td>
+                        <td class="lp_cellule">{{ element['etat_client'] }}</td>
+                    </tr>
+                {% endfor %}  
+              
+            </table>
+            </div>
+         
+            <br><br>
+        
+        </fieldset>
+        </form>
+    </div>
+
+    <!--création de la partie expédition commande-->
+    <div>
+        <form action='{{ url_for("AgiParts") }}' method='POST'>
+          <fieldset>
+            <legend><h3>Expédition des commandes</h3></legend>
+            <p><center>Veuillez entrer le numéro de la commande à expédier :</center></p>
+              <center>
+              <form>
+                <input type="text" name="numero_commande_AgiPart" value="numéro de commande ici">
+                <input type="submit" name="envoyer_numero_commande" value="Expédier">
+              </form>
+              </center>
+
+              <br><br>
+
+              <div class="grid-container1">
+                <table>
+                    <tr>
+                        <th>N° Commande</th>
+                        <th>Date Commande AgiLean</th>
+                        <th>Modèle</th>
+                        <th>Option</th>
+                        <th>Etat</th>
+                        <th>Satisfaction client</th>
+                    </tr>
+                
+                    {% for element in commandes %}
+                        <tr class="lp_ligne">
+                            <td class="lp_cellule">{{ element['id'] }}</td>
+                            <td class="lp_cellule">{{ element['temps_commande_client'] }}</td>
+                            <td class="lp_cellule">{{ element['modele'] }}</td>
+                            <td class="lp_cellule">{{ element['option'] }}</td>
+                            <td class="lp_cellule">{{ element['etat_agilean'] }}</td>
+                            <td class="lp_cellule">{{ element['etat_client'] }}</td>
+                        </tr>
+                    {% endfor %}  
+                  
+                </table>
+                </div>
+          </fieldset>
+        </form>
+      </div>
+
+    <br><br>
+    
+    <footer>
+        <h3><center>Nos filiales partenaires Agi Log, Agi Lean et Agi Parts sont fières d'être à votre service </center></h3>
+        <p><center>&copy; 2023 AM Aix-en-Provence</center></p>
+    </footer>
+
     </body>
+
 </html>
