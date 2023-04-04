@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="{{ url_for('static', filename='CSS_AgiLog.css') }}">
+        <link rel="stylesheet" href='{{ url_for("static", filename="CSS_AgiLog.css") }}'>
         <script src=""></script>
         <title>Bienvenue dans l'espace AgiLean </title>
     </head>
@@ -15,9 +15,9 @@
             <nav>
                 <ul>
                 <center>
-                    <a class = "button_accueil" href={{url_for("Accueil")}}><strong> Retour vers l'accueil </strong></a>
+                    <a class = "button_accueil" href='{{url_for("Accueil")}}'><strong> Retour vers l'accueil </strong></a>
                     <br><br>
-                    <a class = "button_AgiLean_Information" href={{url_for("AgiLean_Information")}}><strong> Vers AgiLean Information </strong></a>
+                    <a class = "button_AgiLean_Information" href='{{url_for("AgiLean_Information")}}'><strong> Vers AgiLean Information </strong></a>
                 </center>
                 </ul>
             </nav>

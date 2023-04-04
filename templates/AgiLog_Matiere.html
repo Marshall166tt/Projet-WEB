@@ -3,14 +3,14 @@
     <title>Agilean</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ url_for('static', filename='CSS_PW.css') }}">
+    <link rel="stylesheet" href='{{ url_for("static", filename="CSS_PW.css")}}'>
 
   </head>
 
   <body>
     <div class="grid-container1">
-      <a class = "button1" href={{url_for("Accueil")}}><strong> ACCUEIL </strong></a>
-      <a class = "button1" href={{url_for("AgiLog_Matiere")}}><strong> AGILOG </strong></a>
+      <a class = "button1" href='{{url_for("Accueil")}}'><strong> ACCUEIL </strong></a>
+      <a class = "button1" href='{{url_for("AgiLog_Matiere")}}'><strong> AGILOG </strong></a>
     </div>
     <img id="agilean_logo" src="../static/logo-agilean.svg" alt="Logo AgiLean" height=90><br>
     
