@@ -6,36 +6,55 @@ import sqlite3 as lite
 # Application Flask
 # ------------------
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static', static_folder='static')
 
 # ------------------
 # Les différentes pages
 # ------------------
 
+#Remise à zéro base de données
 
-
-# crée la page web qui affiche la page d'accueil
+#Pages Accueil
 @app.route('/')
 def Accueil():
-#	con = connection_bdd()
 	return render_template('Accueil.html') # utilisation du template html accueil
 
-@app.route('/Client', methods=['GET'])
-def Client():
-	return render_template('Client.html')
+#Pages Client
+@app.route('/Client_Commande', methods=['GET', 'POST'])
+def Client_Commande():
+	return render_template('Client_Commande.html')
 
-@app.route('/AgiLean', methods=['GET'])
-def AgiLean():
-	return render_template('AgiLean.html')
+@app.route('/Client_Reception', methods=['GET', 'POST'])
+def Client_Reception():
+	return render_template('Client_Reception.html')
 
-@app.route('/AgiLog', methods=['GET'])
-def AgiLog():
-	return render_template('AgiLog.html')
+#Pages AgiLean
+@app.route('/AgiLean_Matiere', methods=['GET', 'POST'])
+def AgiLean_Matiere():
+	return render_template('AgiLean_Matiere.html')
 
-@app.route('/AgiParts', methods=['GET'])
+@app.route('/AgiLean_Information', methods=['GET', 'POST'])
+def AgiLean_Information():
+	return render_template('AgiLean_Information.html')
+
+#Pages AgiLog
+@app.route('/AgiLog_Matiere', methods=['GET', 'POST'])
+def AgiLog_Matiere():
+	return render_template('AgiLog_Matiere.html')
+
+@app.route('/AgiLog_Information', methods=['GET', 'POST'])
+def AgiLog_Information():
+	return render_template('AgiLog_Information.html')
+
+#Pages AgiParts
+@app.route('/AgiParts', methods=['GET', 'POST'])
 def AgiParts():
 	return render_template('AgiParts.html')
 
+#Pages En Savoir Plus
+@app.route('/EnSavoirPlus', methods=['GET', 'POST'])
+def SavoirPlus():
+	return render_template('EnSavoirPlus.html')
 
 # ---------------------------------------
 # Lancer le serveur web local Flask
@@ -43,5 +62,4 @@ def AgiParts():
 
 if __name__ == '__main__':
 	app.run(debug=True)
-	
 	

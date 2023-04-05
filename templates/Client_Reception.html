@@ -1,91 +1,101 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="/static/CSS_client.css">
+    <link rel="stylesheet" href='{{ url_for("static", filename="CSS_Client.css")}}'>
     <title>Accueil - Client </title>
   </head>
 
   <body>
     <header>
       <div class="cadre">
-      <h1><center><i>BIENVENUE sur la page client</center></i></h1> 
-      <h2><center>Votre satisfaction est notre priorité n°1 !</center></h2>
+        <h1><center><i>Bienvenue sur la page Client</center></i></h1> 
+        <h2><center>Votre satisfaction est notre priorité n°1 !</center></h2>
       </div> 
+      <nav>
+        <ul>
+          <li><a class = "button1" href='{{url_for("Accueil")}}'><strong> Retour vers l'accueil </strong></a></li>
+        </ul>
+      </nav>
     </header>
-
+    
     <!-- on crée la boite permettant de passer une commande -->
     <div>
-      <form action='{{ url_for("Insertion_vehicule") }}' method='POST'>
+      <form action='{{ url_for("AgiLean_Information")}}' method='POST'>
         <fieldset>
           <legend><h3>Préparation de la commande</h3></legend>
-          <link rel="stylesheet" href="C:\Users\agali\Documents\GitHub\Projet-WEB\static\CCS_button_client.css">
-        
-          <!-- création des boutons de choix véhicule -->
-          <center><img src="C:\Users\agali\Documents\GitHub\Projet-WEB\images\CCF.png"></center>
-          <div> 
-            <center> 
-            <p>Nombre de CCF voulue:</p>
-            <input type="number" name="nb_CCF" min="1">
-            </center>
-          </div>
-
-          <br><br>
-
-          <center><img src="C:\Users\agali\Documents\GitHub\Projet-WEB\images\CCO.png"></center>
-          <div> 
-            <center> 
-            <p>Nombre de CCO voulue:</p>
-            <input type="number" name="nb_CCO" min="1">
-            </center>
-          </div>
-
-          <br><br>
-
-          <center><img src="C:\Users\agali\Documents\GitHub\Projet-WEB\images\CLF.png"></center>
-          <div> 
-            <center> 
-            <p>Nombre de CLF voulue:</p>
-            <input type="number" name="nb_CLF" min="1">
-            </center>
-          </div>
-
-          <br><br>
-
-          <center><img src="C:\Users\agali\Documents\GitHub\Projet-WEB\images\CLO.png"></center>
-          <div> 
-            <center> 
-            <p>Nombre de CLO voulue:</p>
-            <input type="number" name="nb_CLO" min="1">
-            </center>
+          <div class="images-container">
+            <img src='{{ url_for("static", filename="images/CCF.png") }}'>
+            <img src='{{ url_for("static", filename="images/CCO.png") }}'>
+            <img src='{{ url_for("static", filename="images/CLF.png") }}'>
+            <img src='{{ url_for("static", filename="images/CLO.png") }}'>
           </div>
 
           <br><br>
 
           <!-- création des boutons choix des accessoires -->
-          <center><input type="checkbox" name="001" value="True">001 - Attache accessoire</center><br>
-          <center><input type="checkbox" name="100" value="True">100 - Antenne</center><br>
-          <center><input type="checkbox" name="010" value="True">010 - Crochet d'attelage</center><br>
-          <br>
-          <input type="submit" name="envoyer">
+          <div class="selector-container">
+            <label for="choix">Choisissez une option :</label>
+            <select id="choix" name="choix">
+              <option value="option1">CCF</option>
+              <option value="option2">CCO</option>
+              <option value="option3">CLF</option>
+              <option value="option3">CLO</option>
+            </select> 
+            <input type="checkbox" name="001" value="True">001 - Attache accessoire
+            <input type="checkbox" name="100" value="True">100 - Antenne
+            <input type="checkbox" name="010" value="True">010 - Crochet d'attelage
+            <br>
+            <input type="submit" name="envoyer" value="Envoyer la commande">
+          </div>
         </fieldset>
       </form>
     </div>
 
     <!-- création de la boite de validation commande -->
     <div>
-      <form action='{{ url_for("Reception_vehicule") }}' method='POST'>
+      <form action='{{ url_for("AgiLean_Information")}}' method='POST'>
         <fieldset>
           <legend><h3>Accuser la réception commande</h3></legend>
-          Numéro de commande:<br>
-          <input type="number" name="numero_commande" min="1"><br>
-          <br>
-          Etat de la livraison : 
-          <select name="select_vehicule">
-          <option value="Livraison valide">Livraison valide</option>
-          <option value="Livraison non valide">Livraison non valide</option>
-          </select>
+          <div class="grid-container2">
+            <table>
+              <tr>
+                <th>N° Commande</th>
+                <th>Date Commande Client</th>
+                <th>Modèle</th>
+                <th>Option</th>
+                <th>Etat</th>
+                <th>Satisfaction client</th>
+              </tr>
+              
+              {% for element in commandes %}
+              <tr class="lp_ligne">
+                  <td class="lp_cellule">{{ element['id'] }}</td>
+                      <td class="lp_cellule">{{ element['temps_commande_client'] }}</td>
+                      <td class="lp_cellule">{{ element['modele'] }}</td>
+                      <td class="lp_cellule">{{ element['option'] }}</td>
+                      <td class="lp_cellule">{{ element['etat_agilean'] }}</td>
+                      <td class="lp_cellule">{{ element['etat_client'] }}</td>
+              </tr>
+              {% endfor %}
+
+            </table>
+          </div>
+           
           <br><br>
-          <input type="submit" name="valider">
+          
+          <div>
+            Numéro de commande:<br>
+            <input type="number" name="numero_commande" min="1"><br>
+            <br>
+            Etat de la livraison : 
+            <select name="select_vehicule">
+              <option value="Livraison valide">Livraison valide</option>
+              <option value="Livraison non valide">Livraison non valide</option>
+            </select>
+            <br><br>
+            <input type="submit" name="valider" value="Mettre à jour">
+          </div>
+          
         </fieldset>
       </form>
     </div>

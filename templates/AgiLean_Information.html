@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href='{{ url_for("static", filename="CSS_AgiLean.css")}}'>
+
+    <title>Accueil - Client </title>
+  </head>
+
+  <body>
+    <header>
+      <div class="cadre">
+        <h1><center><i>Bienvenue dans l'espace information de AgiLean</center></i></h1> 
+      </div> 
+      
+      <nav>
+        <ul>
+        <center>
+        <a class = "button_accueil" href='{{url_for("Accueil")}}'> Retour vers l'accueil </a>
+        <br>
+        <br>
+        <a class = "button_AgiLean_Matière" href='{{url_for("AgiLean_Matiere")}}'> Retour vers AgiLean Matière </a>
+        </center>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- création de l'affichage des commandes clients -->
+    <div>
+      <form action='{{ url_for("AgiLean_Information") }}' method='POST'>
+        <fieldset>
+          <legend><h3>Commandes client en attente</h3></legend>
+          <div class="grid-container2">
+            <div>
+            <table>
+              <tr>
+                <th>N° Commande</th>
+                <th>Date Commande Client</th>
+                <th>Modèle</th>
+                <th>Option</th>
+                <th>Etat</th>
+                <th>Satisfaction client</th>
+              </tr>
+              
+            {% for element in commandes %}
+        		<tr class="lp_ligne">
+          			<td class="lp_cellule">{{ element['id'] }}</td>
+                    <td class="lp_cellule">{{ element['temps_commande_client'] }}</td>
+                    <td class="lp_cellule">{{ element['modele'] }}</td>
+                    <td class="lp_cellule">{{ element['option'] }}</td>
+                    <td class="lp_cellule">{{ element['etat_agilean'] }}</td>
+                    <td class="lp_cellule">{{ element['etat_client'] }}</td>
+        		</tr>
+      		  {% endfor %}  
+                
+           </table>
+           </div>
+           
+          <br><br>
+          
+        </fieldset>
+      </form>
+    </div>
+
+    <div>
+      <form action='{{ url_for("AgiLean_Information") }}' method='POST'>
+        <fieldset>
+          <legend><h3>Passer une commande à Agilog</h3></legend>
+          <p><center>Veuillez entrer le numéro de commande client à traiter :</center></p>
+            <center>
+            <form>
+              <input type="text" name="numero_commande" value="numéro de commande ici">
+              <input type="submit" name="envoyer_numero_commande" value="Commander">
+            </form>
+            </center>
+        </fieldset>
+      </form>
+    </div>
+
+    <!-- création de l'affichage des commandes fournisseurs en attente -->
+    <div>
+      <form action='{{ url_for("AgiLean_Information") }}' method='POST'>
+        <fieldset>
+          <legend><h3>Commandes fournisseur en attente</h3></legend>
+          <div class="grid-container3">
+            <div>
+            <table>
+              <tr>
+                <th>N° Commande</th>
+                <th>Date Commande AgiLean</th>
+                <th>Modèle</th>
+                <th>Option</th>
+                <th>Etat</th>
+                <th>Satisfaction client</th>
+              </tr>
+              
+            {% for element in commandes %}
+        		<tr class="lp_ligne">
+          			<td class="lp_cellule">{{ element['id'] }}</td>
+                    <td class="lp_cellule">{{ element['temps_commande_client'] }}</td>
+                    <td class="lp_cellule">{{ element['modele'] }}</td>
+                    <td class="lp_cellule">{{ element['option'] }}</td>
+                    <td class="lp_cellule">{{ element['etat_agilean'] }}</td>
+                    <td class="lp_cellule">{{ element['etat_client'] }}</td>
+        		</tr>
+      		{% endfor %}  
+                
+           </table>
+           </div>
+           
+          <br><br>
+          
+        </fieldset>
+      </form>
+    </div>
+
+    <footer>
+      <h3><center>Nos filiales partenaires Agi Log, Agi Lean et Agi Parts sont fières d'être à votre service </center></h3>
+      <p><center>&copy; 2023 AM Aix-en-Provence</center></p>
+    </footer>
+
+  </body>
+
+</html>

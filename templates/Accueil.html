@@ -2,25 +2,35 @@
 <html>
   <head>
     <title>Accueil - Entreprise de production </title>
-    <link rel="stylesheet" href="/static/CSS PW.css">
+    <link rel="stylesheet" href='{{ url_for("static", filename="CSS_Accueil.css")}}'>
   </head>
+
   <body>
     <header>
-      <h1><center> BIENVENUE </center><br> <center> Agilité est mère de sureté ! </center></h1>
       <nav>
         <ul>
-            <li><a href="Client">Client</a></li>
-            <li><a href="AgiLean">Agi Lean</a></li>
-            <li><a href="AgiLog">Agi Log</a></li>
-            <li><a href="AgiParts">Agi Parts</a></li>
-		<li><a href="EnSavoirPlus">En savoir plus sur nous</a></li>
+          <li><a href="Client_Reception">Client</a></li>
+          <li><a href="AgiLean_Matiere">AgiLean</a></li>
+          <li><a href="AgiLog_Matiere">AgiLog</a></li>
+          <li><a href="AgiParts">AgiParts</a></li>
+          <li><a href="EnSavoirPlus">En savoir plus sur nous</a></li>
         </ul>
       </nav>
     </header>
+
+    <div class="logo">
+      <a href="/">
+        <center> <img src='{{ url_for("static", filename="images/Logo_Agi_no_background.png")}}'> </center>
+      </a>
+    </div>
+
     <main>
-      <p><center>Bienvenue sur la page d'accueil de notre entreprise de production. Veuillez choisir une page à visiter en utilisant la navigation ci-dessus.</center></p>
-	<center><img src='{{ url_for("static", filename="images/logo INNOVALOG.png") }}'></center>
+      <div class="content">
+        <p><center>Bienvenue sur la page d'accueil de notre entreprise de production. Veuillez choisir une page à visiter en utilisant la navigation ci-dessus.</center></p>
+        <center><img src='{{ url_for("static", filename="images/logo INNOVALOG.png")}}'></center>
+      </div>
     </main>
+    
     <footer>
       <p>&copy; 2023 AM Aix-en-Provence</p>
     </footer>
