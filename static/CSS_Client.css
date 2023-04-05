@@ -52,9 +52,19 @@ nav a:hover {
   justify-content: space-between; /* pour espacer les images */
 }
 
-.grid-container2{
-  display: flex;
-  justify-content: space-between;
+/* Spécifique au tableau de commandes */
+table {
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: center;
+}
+th {
+  background-color: gray;
+  color: white;
 }
 
 main {

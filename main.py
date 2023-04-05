@@ -22,6 +22,7 @@ conn.commit()
 cur.execute("UPDATE PIECES SET stock='' ") #remet à jour le stock à 0
 conn.commit()
 conn.close()
+t = time.time()
 
 #commandes
 def BDD(command):
@@ -66,19 +67,20 @@ def Client_Reception():
 		option3 = request.form.get('Option3')
 		#print(modele, option1, option2, option3, str(option1)+str(option2)+str(option3))
 		nbr = 0
-		if option1:
-			nbr += 1
-		if option2:
-			nbr += 10
 		if option3:
 			nbr += 100
+		if option2:
+			nbr += 10
+		if option1:
+			nbr += 1
+
 		option = format_num(nbr)
 		print(option)
 
 		conn = lite.connect('BDD.db')
 		conn.row_factory = lite.Row
 		cur = conn.cursor()
-		cur.execute("INSERT INTO COMMANDES('Date', 'Modèle', 'Option', 'Etat_Lean', 'Etat_Log', 'Etat_Client') VALUES (?,?,?,?,?,?)", (time.time(), modele, str(option), "Commande passée", "En cours", "Yeey"))
+		cur.execute("INSERT INTO COMMANDES('Date', 'Modèle', 'Option', 'Etat_Lean', 'Etat_Log', 'Etat_Client') VALUES (?,?,?,?,?,?)", (int((time.time()-t)*100)/100, modele, str(option), "Commande passée", "En cours", "Yeey"))
 		conn.commit()
 		conn.close()
 		redirect(url_for('Client_Reception'))
