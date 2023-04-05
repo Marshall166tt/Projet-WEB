@@ -44,10 +44,8 @@ def Client_Commande():
 
 @app.route('/Client_Reception', methods=['GET', 'POST'])
 def Client_Reception():
-	print("non")
 	if not request.method == 'POST':
 		render_template('Client_Reception.html')
-		print("oui")
 	else:
 		modele = request.form.get('modele')
 		option1 = request.form.get('Option1')
@@ -67,7 +65,7 @@ def Client_Reception():
 			return render_template('Client_Reception.html')
 
 	lignes = BDD("SELECT id, Date, Modèle, Option, Etat_Lean, Etat_Client FROM COMMANDES")
-	print(lignes)
+	#print(lignes)
 	return render_template('Client_Reception.html', commandes = lignes)
 
 #Pages AgiLean
