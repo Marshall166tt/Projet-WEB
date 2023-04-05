@@ -1,19 +1,37 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, url_for, request, render_template, redirect
-import sqlite3 as lite
+import sqlite3 as lite 
 
 # ------------------
 # Application Flask
 # ------------------
 
-app = Flask(__name__, static_url_path='/static', static_folder='static')
+app = Flask(__name__, static_url_path = '/static', static_folder = 'static')
 
 # ------------------
 # Les différentes pages
 # ------------------
 
 #Remise à zéro base de données
+con = lite.connect('BDD.db')
+con.row_factory = lite.Row
+cur = con.cursor()
+cur.execute("DELETE FROM COMMANDES") #remet à zéro la table commande
+con.commit()
+cur.execute("UPDATE PIECES SET stock='' ") #remet à jour le stock à 0
+con.commit()
+con.close()
 
+#commandes
+def BDD(command):
+	con = lite.connect('BDD.db')
+	con.row_factory = lite.Row
+	cur = con.cursor()
+	cur.execute(command)
+	lignes = cur.fetchall()
+	con.close()
+	return lignes
+	
 #Pages Accueil
 @app.route('/')
 def Accueil():
@@ -26,7 +44,31 @@ def Client_Commande():
 
 @app.route('/Client_Reception', methods=['GET', 'POST'])
 def Client_Reception():
-	return render_template('Client_Reception.html')
+	print("non")
+	if not request.method == 'POST':
+		render_template('Client_Reception.html')
+		print("oui")
+	else:
+		modele = request.form.get('modele')
+		option1 = request.form.get('Option1')
+		option2 = request.form.get('Option2')
+		option3 = request.form.get('Option3')
+		print(modele, option1, option2, option3)
+
+		if (modele != None and option1 != None and option2 != None and option3 != None):
+			con = lite.connect('BDD.db')
+			con.row_factory = lite.Row
+			cur = con.cursor()
+			cur.execute("INSERT INTO COMMANDES('Modèle', 'Option') VALUES (?,?)", (modele,""+option1+option2+option3))
+			con.commit()
+			con.close()
+			return redirect(url_for('Client_Reception.html'))
+		else:
+			return render_template('Client_Reception.html')
+
+	lignes = BDD("SELECT id, Date, Modèle, Option, Etat_Lean, Etat_Client FROM COMMANDES")
+	print(lignes)
+	return render_template('Client_Reception.html', commandes = lignes)
 
 #Pages AgiLean
 @app.route('/AgiLean_Matiere', methods=['GET', 'POST'])

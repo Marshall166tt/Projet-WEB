@@ -14,13 +14,14 @@
       <nav>
         <ul>
           <li><a class = "button1" href='{{url_for("Accueil")}}'><strong> Retour vers l'accueil </strong></a></li>
+          <li><a class = "button2" href='{{url_for("Client_Commande")}}'><strong> Passer Commande </strong></a></li>
         </ul>
       </nav>
     </header>
     
     <!-- on crée la boite permettant de passer une commande -->
     <div>
-      <form action='{{ url_for("AgiLean_Information")}}' method='POST'>
+      <form action='{{ url_for("Client_Reception")}}' method='GET'>
         <fieldset>
           <legend><h3>Préparation de la commande</h3></legend>
           <div class="images-container">
@@ -35,15 +36,15 @@
           <!-- création des boutons choix des accessoires -->
           <div class="selector-container">
             <label for="choix">Choisissez une option :</label>
-            <select id="choix" name="choix">
-              <option value="option1">CCF</option>
-              <option value="option2">CCO</option>
-              <option value="option3">CLF</option>
-              <option value="option3">CLO</option>
+            <select id="choix" name="modele">
+              <option value="CCF">CCF</option>
+              <option value="CCO">CCO</option>
+              <option value="CLF">CLF</option>
+              <option value="CLO">CLO</option>
             </select> 
-            <input type="checkbox" name="001" value="True">001 - Attache accessoire
-            <input type="checkbox" name="100" value="True">100 - Antenne
-            <input type="checkbox" name="010" value="True">010 - Crochet d'attelage
+            <input type="checkbox" name="Option1" value="001">001 - Attache accessoire
+            <input type="checkbox" name="Option2" value="100">100 - Antenne
+            <input type="checkbox" name="Option3" value="010">010 - Crochet d'attelage
             <br>
             <input type="submit" name="envoyer" value="Envoyer la commande">
           </div>
@@ -64,17 +65,17 @@
                 <th>Modèle</th>
                 <th>Option</th>
                 <th>Etat</th>
-                <th>Satisfaction client</th>
+                <th>Conformité / Validation Client</th>
               </tr>
               
               {% for element in commandes %}
               <tr class="lp_ligne">
                   <td class="lp_cellule">{{ element['id'] }}</td>
-                      <td class="lp_cellule">{{ element['temps_commande_client'] }}</td>
-                      <td class="lp_cellule">{{ element['modele'] }}</td>
-                      <td class="lp_cellule">{{ element['option'] }}</td>
-                      <td class="lp_cellule">{{ element['etat_agilean'] }}</td>
-                      <td class="lp_cellule">{{ element['etat_client'] }}</td>
+                  <td class="lp_cellule">{{ element['Date'] }}</td>
+                  <td class="lp_cellule">{{ element['Modèle'] }}</td>
+                  <td class="lp_cellule">{{ element['Option'] }}</td>
+                  <td class="lp_cellule">{{ element['Etat_Lean'] }}</td>
+                  <td class="lp_cellule">{{ element['Etat_Client'] }}</td>
               </tr>
               {% endfor %}
 

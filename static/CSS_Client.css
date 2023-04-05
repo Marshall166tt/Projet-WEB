@@ -57,10 +57,9 @@ main {
 }
 
 footer {
- background-image: url("https://media.gqmagazine.fr/photos/610a5e8dfc0bc6c36d33215d/16:9/w_2560%2Cc_limit/photo-1587654780291-39c9404d746b.jpeg");
- background-color: #333;
- color: black;
- padding: 10px;
- text-align: center
- ;
+  background-image: url("https://media.gqmagazine.fr/photos/610a5e8dfc0bc6c36d33215d/16:9/w_2560%2Cc_limit/photo-1587654780291-39c9404d746b.jpeg");
+  background-color: #333;
+  color: black;
+  padding: 10px;
+  text-align: center;
 }
