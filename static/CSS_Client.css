@@ -52,6 +52,11 @@ nav a:hover {
   justify-content: space-between; /* pour espacer les images */
 }
 
+.grid-container2{
+  display: flex;
+  justify-content: space-between;
+}
+
 main {
   padding: 20px;
 }
