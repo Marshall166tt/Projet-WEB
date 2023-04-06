@@ -11,68 +11,80 @@
         <h1><center><i>BIENVENUE sur la page client</center></i></h1> 
         <h2><center>Votre satisfaction est notre priorité n°1 !</center></h2>
       </div> 
+
+      <nav>
+        <ul>
+          <li><a class = "button1" href='{{url_for("Accueil")}}'><strong> Retour vers l'accueil </strong></a></li>
+          <li><a class = "button2" href='{{url_for("Client_Reception")}}'><strong> Reception Client </strong></a></li>
+        </ul>
+      </nav>
+
     </header>
 
-    <div class="grid-container1">
-      <a class = "button1" href='{{url_for("Accueil")}}'><strong> ACCUEIL </strong></a>
-    </div>
-    <!-- on crée la boite permettant de passer une commande -->
+    <!-- on crée la boite permettant de passer une commande -->     
     <div>
-      <form action='{{ url_for("Client_Commande") }}' method='POST'>
+      <form action='{{ url_for("Client_Commande")}}' method='POST'>
         <fieldset>
-          <legend><h3>Préparation de la commande </h3></legend>
-          <link rel="stylesheet" href="C:\Users\agali\Documents\GitHub\Projet-WEB\static\CCS_button_client.css">
-        
-          <!-- création des boutons de choix véhicule -->
-          <center><img src="C:\Users\agali\Documents\GitHub\Projet-WEB\images\CCF.png"></center>
-          <div> 
-            <center> 
-            <p>Nombre de CCF voulue:</p>
-            <input type="number" name="nb_CCF" min="1">
-            </center>
-          </div>
-
-          <br><br>
-
-          <center><img src="C:\Users\agali\Documents\GitHub\Projet-WEB\images\CCO.png"></center>
-          <div> 
-            <center> 
-            <p>Nombre de CCO voulue:</p>
-            <input type="number" name="nb_CCO" min="1">
-            </center>
-          </div>
-
-          <br><br>
-
-          <center><img src="C:\Users\agali\Documents\GitHub\Projet-WEB\images\CLF.png"></center>
-          <div> 
-            <center> 
-            <p>Nombre de CLF voulue:</p>
-            <input type="number" name="nb_CLF" min="1">
-            </center>
-          </div>
-
-          <br><br>
-
-          <center><img src="C:\Users\agali\Documents\GitHub\Projet-WEB\images\CLO.png"></center>
-          <div> 
-            <center> 
-            <p>Nombre de CLO voulue:</p>
-            <input type="number" name="nb_CLO" min="1">
-            </center>
+          <legend><h3>Préparation de la commande</h3></legend>
+          <div class="images-container">
+            <img src='{{ url_for("static", filename="images/CCF.png") }}'>
+            <img src='{{ url_for("static", filename="images/CCO.png") }}'>
+            <img src='{{ url_for("static", filename="images/CLF.png") }}'>
+            <img src='{{ url_for("static", filename="images/CLO.png") }}'>
           </div>
 
           <br><br>
 
           <!-- création des boutons choix des accessoires -->
-          <center><input type="checkbox" name="001" value="True">001 - Attache accessoire</center><br>
-          <center><input type="checkbox" name="100" value="True">100 - Antenne</center><br>
-          <center><input type="checkbox" name="010" value="True">010 - Crochet d'attelage</center><br>
-          <br>
-          <input type="submit" name="envoyer" value="Envoyer la commande">
+          <div class="selector-container">
+            <label for="choix">Choisissez une option :</label>
+            <select id="choix" name="modele">
+              <option value="CCF">CCF</option>
+              <option value="CCO">CCO</option>
+              <option value="CLF">CLF</option>
+              <option value="CLO">CLO</option>
+            </select> 
+            <input type="checkbox" name="Option1" value="True">001 - Attache accessoire
+            <input type="checkbox" name="Option2" value="True">010 - Crochet d'attelage
+            <input type="checkbox" name="Option3" value="True">100 - Antenne
+            <br>
+            <input type="submit" name="envoyer" value="Envoyer la commande">
+          </div>
         </fieldset>
       </form>
     </div>
+
+    <!-- création de la boite de validation commande -->
+    <div>
+      <fieldset>
+        <legend><h3>Commandes Passées</h3></legend>
+        <div class="grid-container2">
+          <table>
+            <tr>
+              <th>N° Commande</th>
+              <th>Date Commande</th>
+              <th>Modèle</th>
+              <th>Option</th>
+              <th>Etat</th>
+              <th>Conformité / Validation Client</th>
+            </tr>
+            
+            {% for element in commandes %}
+            <tr class="lp_ligne">
+              <td class="lp_cellule">{{ element['id'] }}</td>
+              <td class="lp_cellule">{{ element['Date'] }}</td>
+              <td class="lp_cellule">{{ element['Modèle'] }}</td>
+              <td class="lp_cellule">{{ element['Option'] }}</td>
+              <td class="lp_cellule">{{ element['Etat_Lean'] }}</td>
+              <td class="lp_cellule">{{ element['Etat_Client'] }}</td>
+            </tr>
+            {% endfor %}
+
+          </table>
+        </div>
+      </fieldset>
+    </div>
+
 
     <footer>
       <h3><center>Nos filiales partenaires Agi Log, Agi Lean et Agi Parts sont fières d'être à votre service </center></h3>
