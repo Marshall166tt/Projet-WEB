@@ -80,7 +80,7 @@ def Client_Reception():
 		conn = lite.connect('BDD.db')
 		conn.row_factory = lite.Row
 		cur = conn.cursor()
-		cur.execute("INSERT INTO COMMANDES('Date', 'Modèle', 'Option', 'Etat_Lean', 'Etat_Log', 'Etat_Client') VALUES (?,?,?,?,?,?)", (int((time.time()-t)*100)/100, modele, option, "Commande passée", "En cours", "Yeey"))
+		cur.execute("INSERT INTO COMMANDES('Date', 'Modèle', 'Option', 'Etat_Lean', 'Etat_Log', 'Etat_Client') VALUES (?,?,?,?,?,?)", (int((time.time()-t)*100)/100, modele, option, "Commande passée", "En cours", "En Attente"))
 		conn.commit()
 		conn.close()
 		redirect(url_for('Client_Reception'))
