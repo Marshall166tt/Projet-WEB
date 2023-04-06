@@ -19,44 +19,12 @@
       </nav>
     </header>
     
-    <!-- on crée la boite permettant de passer une commande -->     
-    <div>
-      <form action='{{ url_for("Client_Reception")}}' method='POST'>
-        <fieldset>
-          <legend><h3>Préparation de la commande</h3></legend>
-          <div class="images-container">
-            <img src='{{ url_for("static", filename="images/CCF.png") }}'>
-            <img src='{{ url_for("static", filename="images/CCO.png") }}'>
-            <img src='{{ url_for("static", filename="images/CLF.png") }}'>
-            <img src='{{ url_for("static", filename="images/CLO.png") }}'>
-          </div>
-
-          <br><br>
-
-          <!-- création des boutons choix des accessoires -->
-          <div class="selector-container">
-            <label for="choix">Choisissez une option :</label>
-            <select id="choix" name="modele">
-              <option value="CCF">CCF</option>
-              <option value="CCO">CCO</option>
-              <option value="CLF">CLF</option>
-              <option value="CLO">CLO</option>
-            </select> 
-            <input type="checkbox" name="Option1" value="True">001 - Attache accessoire
-            <input type="checkbox" name="Option2" value="True">010 - Crochet d'attelage
-            <input type="checkbox" name="Option3" value="True">100 - Antenne
-            <br>
-            <input type="submit" name="envoyer" value="Envoyer la commande">
-          </div>
-        </fieldset>
-      </form>
-    </div>
 
     <!-- création de la boite de validation commande -->
     <div>
       <form action='{{ url_for("AgiLean_Information")}}' method='POST'>
         <fieldset>
-          <legend><h3>Accuser la réception commande</h3></legend>
+          <legend><h3>Voitures Reçues</h3></legend>
           <div class="grid-container2">
             <table>
               <tr>

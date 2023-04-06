@@ -54,12 +54,8 @@ def Accueil():
 #Pages Client
 @app.route('/Client_Commande', methods=['GET', 'POST'])
 def Client_Commande():
-	return render_template('Client_Commande.html')
-
-@app.route('/Client_Reception', methods=['GET', 'POST'])
-def Client_Reception():
 	if not request.method == 'POST':
-		return render_template('Client_Reception.html', commandes=BDD("SELECT id, Date, Modèle, Option, Etat_Lean, Etat_Client FROM COMMANDES"))
+		return render_template('Client_Commande.html', commandes=BDD("SELECT id, Date, Modèle, Option, Etat_Lean, Etat_Client FROM COMMANDES"))
 	else:
 		modele = request.form.get('modele', '')
 		option1 = request.form.get('Option1')
@@ -73,9 +69,7 @@ def Client_Reception():
 			nbr += 10
 		elif option1:
 			nbr += 1
-
 		option = format_num(nbr)
-		print(option)
 
 		conn = lite.connect('BDD.db')
 		conn.row_factory = lite.Row
@@ -85,7 +79,11 @@ def Client_Reception():
 		conn.close()
 		redirect(url_for('Client_Reception'))
 		lignes = BDD("SELECT id, Date, Modèle, Option, Etat_Lean, Etat_Client FROM COMMANDES")
-		return render_template('Client_Reception.html', commandes = lignes)
+		return render_template('Client_Commande.html', commandes = lignes)
+
+@app.route('/Client_Reception', methods=['GET', 'POST'])
+def Client_Reception():
+	return render_template('Client_Reception.html', commandes=BDD("SELECT id, Date, Modèle, Option, Etat_Lean, Etat_Client FROM COMMANDES"))
 
 #Pages AgiLean
 @app.route('/AgiLean_Matiere', methods=['GET', 'POST'])
@@ -94,7 +92,8 @@ def AgiLean_Matiere():
 
 @app.route('/AgiLean_Information', methods=['GET', 'POST'])
 def AgiLean_Information():
-	return render_template('AgiLean_Information.html')
+	return render_template('AgiLean_Information.html', commandes_client=BDD("SELECT id, Date, Modèle, Option, Etat_Lean, Etat_Client FROM COMMANDES"))
+
 
 #Pages AgiLog
 @app.route('/AgiLog_Matiere', methods=['GET', 'POST'])
