@@ -19,12 +19,10 @@ header {
 nav ul {
   list-style: none;
   margin-top: 20;
-  padding-top: 20;
   display: flex;
 }
    
 nav li {
-  padding-top: 20;
   margin-right: 10px;
 }
 
@@ -46,6 +44,9 @@ nav a:hover {
 main {
   padding: 20px;
   flex-grow: 1;
+  color: rgb(255, 242, 242);
+  background: linear-gradient(to top, #e1a6c4, #7ea3b2);
+
 }
  
 footer {

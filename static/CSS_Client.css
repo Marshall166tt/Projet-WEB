@@ -7,7 +7,7 @@ body {
 header {
  background: linear-gradient(to bottom, #e1a6c4, #7ea3b2);
  color: black;
- padding: 30px;
+ padding: 0px;
  text-align: center
 }
 
@@ -27,7 +27,7 @@ nav ul {
 }
  
 nav li {
-  margin-right: 10px;
+  margin-right: 20px;
 }
  
 nav a {
