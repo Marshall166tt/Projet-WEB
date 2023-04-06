@@ -39,12 +39,12 @@ def format_num(num):
 	num = str(num)
 	if num == "0":
 		return "Sans option"
-	if len(num) == 1:
+	elif len(num) == 1:
 		return "00"+num
-	if len(num) == 2:
+	elif len(num) == 2:
 		return "0"+num
 	else:
-		return num
+		return str(num)
 	
 #Pages Accueil
 @app.route('/')
@@ -59,7 +59,7 @@ def Client_Commande():
 @app.route('/Client_Reception', methods=['GET', 'POST'])
 def Client_Reception():
 	if not request.method == 'POST':
-		return render_template('Client_Reception.html')
+		return render_template('Client_Reception.html', commandes=BDD("SELECT id, Date, Modèle, Option, Etat_Lean, Etat_Client FROM COMMANDES"))
 	else:
 		modele = request.form.get('modele', '')
 		option1 = request.form.get('Option1')
@@ -69,9 +69,9 @@ def Client_Reception():
 		nbr = 0
 		if option3:
 			nbr += 100
-		if option2:
+		elif option2:
 			nbr += 10
-		if option1:
+		elif option1:
 			nbr += 1
 
 		option = format_num(nbr)
@@ -80,16 +80,12 @@ def Client_Reception():
 		conn = lite.connect('BDD.db')
 		conn.row_factory = lite.Row
 		cur = conn.cursor()
-		cur.execute("INSERT INTO COMMANDES('Date', 'Modèle', 'Option', 'Etat_Lean', 'Etat_Log', 'Etat_Client') VALUES (?,?,?,?,?,?)", (int((time.time()-t)*100)/100, modele, str(option), "Commande passée", "En cours", "Yeey"))
+		cur.execute("INSERT INTO COMMANDES('Date', 'Modèle', 'Option', 'Etat_Lean', 'Etat_Log', 'Etat_Client') VALUES (?,?,?,?,?,?)", (int((time.time()-t)*100)/100, modele, option, "Commande passée", "En cours", "Yeey"))
 		conn.commit()
 		conn.close()
 		redirect(url_for('Client_Reception'))
 		lignes = BDD("SELECT id, Date, Modèle, Option, Etat_Lean, Etat_Client FROM COMMANDES")
-		render_template('Client_Reception.html', commandes = lignes)
-
-	lignes = BDD("SELECT id, Date, Modèle, Option, Etat_Lean, Etat_Client FROM COMMANDES")
-	#print(lignes)
-	return render_template('Client_Reception.html', commandes = lignes)
+		return render_template('Client_Reception.html', commandes = lignes)
 
 #Pages AgiLean
 @app.route('/AgiLean_Matiere', methods=['GET', 'POST'])
