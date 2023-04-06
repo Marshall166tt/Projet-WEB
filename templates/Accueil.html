@@ -7,22 +7,24 @@
 
   <body>
     <header>
+
       <nav>
         <ul>
-          <li><a href="Client_Reception">Client</a></li>
-          <li><a href="AgiLean_Matiere">AgiLean</a></li>
-          <li><a href="AgiLog_Matiere">AgiLog</a></li>
+          <li>
+          <div class="logo">
+              <img src='{{ url_for("static", filename="images/Logo_Agi_no_background.png")}}'>
+          </div>
+          <li><a href="Client_Commande">Client</a></li>
+          <li><a href="AgiLean_Information">AgiLean</a></li>
+          <li><a href="AgiLog_Information">AgiLog</a></li>
           <li><a href="AgiParts">AgiParts</a></li>
-          <li><a href="EnSavoirPlus">En savoir plus sur nous</a></li>
+          <li><a href="EnSavoirPlus">En savoir plus</a></li>
         </ul>
       </nav>
     </header>
 
-    <div class="logo">
-      <a href="/">
-        <center> <img src='{{ url_for("static", filename="images/Logo_Agi_no_background.png")}}'> </center>
-      </a>
-    </div>
+    <img src='{{ url_for("static", filename="images/AGI.png")}}'>
+    
 
     <main>
       <div class="content">

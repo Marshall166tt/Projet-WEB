@@ -14,67 +14,36 @@
       <nav>
         <ul>
           <li><a class = "button1" href='{{url_for("Accueil")}}'><strong> Retour vers l'accueil </strong></a></li>
+          <li><a class = "button2" href='{{url_for("Client_Commande")}}'><strong> Passer Commande </strong></a></li>
         </ul>
       </nav>
     </header>
     
-    <!-- on crée la boite permettant de passer une commande -->
-    <div>
-      <form action='{{ url_for("AgiLean_Information")}}' method='POST'>
-        <fieldset>
-          <legend><h3>Préparation de la commande</h3></legend>
-          <div class="images-container">
-            <img src='{{ url_for("static", filename="images/CCF.png") }}'>
-            <img src='{{ url_for("static", filename="images/CCO.png") }}'>
-            <img src='{{ url_for("static", filename="images/CLF.png") }}'>
-            <img src='{{ url_for("static", filename="images/CLO.png") }}'>
-          </div>
-
-          <br><br>
-
-          <!-- création des boutons choix des accessoires -->
-          <div class="selector-container">
-            <label for="choix">Choisissez une option :</label>
-            <select id="choix" name="choix">
-              <option value="option1">CCF</option>
-              <option value="option2">CCO</option>
-              <option value="option3">CLF</option>
-              <option value="option3">CLO</option>
-            </select> 
-            <input type="checkbox" name="001" value="True">001 - Attache accessoire
-            <input type="checkbox" name="100" value="True">100 - Antenne
-            <input type="checkbox" name="010" value="True">010 - Crochet d'attelage
-            <br>
-            <input type="submit" name="envoyer" value="Envoyer la commande">
-          </div>
-        </fieldset>
-      </form>
-    </div>
 
     <!-- création de la boite de validation commande -->
     <div>
       <form action='{{ url_for("AgiLean_Information")}}' method='POST'>
         <fieldset>
-          <legend><h3>Accuser la réception commande</h3></legend>
+          <legend><h3>Voitures Reçues</h3></legend>
           <div class="grid-container2">
             <table>
               <tr>
                 <th>N° Commande</th>
-                <th>Date Commande Client</th>
+                <th>Date Commande</th>
                 <th>Modèle</th>
                 <th>Option</th>
                 <th>Etat</th>
-                <th>Satisfaction client</th>
+                <th>Conformité / Validation Client</th>
               </tr>
               
               {% for element in commandes %}
               <tr class="lp_ligne">
-                  <td class="lp_cellule">{{ element['id'] }}</td>
-                      <td class="lp_cellule">{{ element['temps_commande_client'] }}</td>
-                      <td class="lp_cellule">{{ element['modele'] }}</td>
-                      <td class="lp_cellule">{{ element['option'] }}</td>
-                      <td class="lp_cellule">{{ element['etat_agilean'] }}</td>
-                      <td class="lp_cellule">{{ element['etat_client'] }}</td>
+                <td class="lp_cellule">{{ element['id'] }}</td>
+                <td class="lp_cellule">{{ element['Date'] }}</td>
+                <td class="lp_cellule">{{ element['Modèle'] }}</td>
+                <td class="lp_cellule">{{ element['Option'] }}</td>
+                <td class="lp_cellule">{{ element['Etat_Lean'] }}</td>
+                <td class="lp_cellule">{{ element['Etat_Client'] }}</td>
               </tr>
               {% endfor %}
 
@@ -84,13 +53,13 @@
           <br><br>
           
           <div>
-            Numéro de commande:<br>
+            Numéro de commande:
             <input type="number" name="numero_commande" min="1"><br>
             <br>
             Etat de la livraison : 
             <select name="select_vehicule">
-              <option value="Livraison valide">Livraison valide</option>
-              <option value="Livraison non valide">Livraison non valide</option>
+              <option value="Livraison valide">Livraison conforme</option>
+              <option value="Livraison non valide">Livraison non conforme</option>
             </select>
             <br><br>
             <input type="submit" name="valider" value="Mettre à jour">

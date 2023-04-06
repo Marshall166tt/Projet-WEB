@@ -30,33 +30,28 @@
         <fieldset>
           <legend><h3>Commandes client en attente</h3></legend>
           <div class="grid-container2">
-            <div>
             <table>
               <tr>
                 <th>N° Commande</th>
-                <th>Date Commande Client</th>
+                <th>Date Commande</th>
                 <th>Modèle</th>
                 <th>Option</th>
                 <th>Etat</th>
-                <th>Satisfaction client</th>
+                <th>Conformité / Validation Client</th>
               </tr>
               
-            {% for element in commandes %}
-        		<tr class="lp_ligne">
-          			<td class="lp_cellule">{{ element['id'] }}</td>
-                    <td class="lp_cellule">{{ element['temps_commande_client'] }}</td>
-                    <td class="lp_cellule">{{ element['modele'] }}</td>
-                    <td class="lp_cellule">{{ element['option'] }}</td>
-                    <td class="lp_cellule">{{ element['etat_agilean'] }}</td>
-                    <td class="lp_cellule">{{ element['etat_client'] }}</td>
-        		</tr>
-      		  {% endfor %}  
-                
-           </table>
-           </div>
-           
-          <br><br>
-          
+              {% for element in commandes_client %}
+              <tr class="lp_ligne">
+                <td class="lp_cellule">{{ element['id'] }}</td>
+                <td class="lp_cellule">{{ element['Date'] }}</td>
+                <td class="lp_cellule">{{ element['Modèle'] }}</td>
+                <td class="lp_cellule">{{ element['Option'] }}</td>
+                <td class="lp_cellule">{{ element['Etat_Lean'] }}</td>
+                <td class="lp_cellule">{{ element['Etat_Client'] }}</td>
+              </tr>
+              {% endfor %}
+            </table>
+          </div>
         </fieldset>
       </form>
     </div>
@@ -68,7 +63,7 @@
           <p><center>Veuillez entrer le numéro de commande client à traiter :</center></p>
             <center>
             <form>
-              <input type="text" name="numero_commande" value="numéro de commande ici">
+              <input type="number" name="numero_commande" min="1">
               <input type="submit" name="envoyer_numero_commande" value="Commander">
             </form>
             </center>
@@ -82,33 +77,28 @@
         <fieldset>
           <legend><h3>Commandes fournisseur en attente</h3></legend>
           <div class="grid-container3">
-            <div>
             <table>
               <tr>
                 <th>N° Commande</th>
-                <th>Date Commande AgiLean</th>
+                <th>Date Commande</th>
                 <th>Modèle</th>
                 <th>Option</th>
                 <th>Etat</th>
-                <th>Satisfaction client</th>
+                <th>Conformité / Validation Client</th>
               </tr>
               
-            {% for element in commandes %}
-        		<tr class="lp_ligne">
-          			<td class="lp_cellule">{{ element['id'] }}</td>
-                    <td class="lp_cellule">{{ element['temps_commande_client'] }}</td>
-                    <td class="lp_cellule">{{ element['modele'] }}</td>
-                    <td class="lp_cellule">{{ element['option'] }}</td>
-                    <td class="lp_cellule">{{ element['etat_agilean'] }}</td>
-                    <td class="lp_cellule">{{ element['etat_client'] }}</td>
-        		</tr>
-      		{% endfor %}  
-                
+              {% for element in commandes %}
+              <tr class="lp_ligne">
+                <td class="lp_cellule">{{ element['id'] }}</td>
+                <td class="lp_cellule">{{ element['Date'] }}</td>
+                <td class="lp_cellule">{{ element['Modèle'] }}</td>
+                <td class="lp_cellule">{{ element['Option'] }}</td>
+                <td class="lp_cellule">{{ element['Etat_Lean'] }}</td>
+                <td class="lp_cellule">{{ element['Etat_Client'] }}</td>
+              </tr>
+              {% endfor %}  
            </table>
-           </div>
-           
-          <br><br>
-          
+          </div>        
         </fieldset>
       </form>
     </div>
