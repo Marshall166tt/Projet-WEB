@@ -13,13 +13,13 @@ body {
 header {
   background-color: #333;
   color: #fff;
-  padding: 50px;
+  padding-bottom: 10px;
 }
    
 nav ul {
   list-style: none;
-  margin: 0;
-  padding: 0;
+  margin-top: 20;
+  padding-top: 20;
   display: flex;
 }
    
@@ -40,9 +40,7 @@ nav a:hover {
 }
 
 .logo {
-  background: linear-gradient(to bottom, #e1a6c4, #7ea3b2);
-  color: #fff;
-  padding: 10px;
+  color: rgb(0, 0, 0);
 }
 main {
   padding: 20px;

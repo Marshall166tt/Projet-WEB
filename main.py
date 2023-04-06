@@ -39,9 +39,9 @@ def format_num(num):
 	num = str(num)
 	if num == "0":
 		return "Sans option"
-	if len(num) == 1:
+	elif len(num) == 1:
 		return "00"+num
-	if len(num) == 2:
+	elif len(num) == 2:
 		return "0"+num
 	else:
 		return num
@@ -69,9 +69,9 @@ def Client_Reception():
 		nbr = 0
 		if option3:
 			nbr += 100
-		if option2:
+		elif option2:
 			nbr += 10
-		if option1:
+		elif option1:
 			nbr += 1
 
 		option = format_num(nbr)

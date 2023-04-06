@@ -5,8 +5,7 @@ body {
 }
 
 header {
- background-image: url("https://media.gqmagazine.fr/photos/610a5e8dfc0bc6c36d33215d/16:9/w_2560%2Cc_limit/photo-1587654780291-39c9404d746b.jpeg");
- background-color: #333;
+ background: linear-gradient(to bottom, #e1a6c4, #7ea3b2);
  color: black;
  padding: 30px;
  text-align: center
@@ -14,7 +13,7 @@ header {
 
 .cadre {
   background-color: white;
-  border: 5px solid red;
+  border: 5px solid rgb(16, 16, 16);
   padding: 5px;
   border-radius: 5px;
 }
@@ -72,9 +71,8 @@ main {
 }
 
 footer {
-  background-image: url("https://media.gqmagazine.fr/photos/610a5e8dfc0bc6c36d33215d/16:9/w_2560%2Cc_limit/photo-1587654780291-39c9404d746b.jpeg");
-  background-color: #333;
-  color: black;
+  background: linear-gradient(to top, #e1a6c4, #7ea3b2);
+  color: rgb(255, 255, 255);
   padding: 10px;
   text-align: center;
 }

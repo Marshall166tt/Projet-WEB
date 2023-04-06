@@ -7,8 +7,16 @@
 
   <body>
     <header>
+
       <nav>
         <ul>
+          <li>
+          <div class="logo">
+            <a href="/">
+              <img src='{{ url_for("static", filename="images/Logo_Agi_no_background.png")}}'>
+            </a>
+          </div>
+
           <li><a href="Client_Reception">Client</a></li>
           <li><a href="AgiLean_Matiere">AgiLean</a></li>
           <li><a href="AgiLog_Matiere">AgiLog</a></li>
@@ -18,11 +26,7 @@
       </nav>
     </header>
 
-    <div class="logo">
-      <a href="/">
-        <center> <img src='{{ url_for("static", filename="images/Logo_Agi_no_background.png")}}'> </center>
-      </a>
-    </div>
+    
 
     <main>
       <div class="content">
