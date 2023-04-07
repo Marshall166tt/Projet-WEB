@@ -92,9 +92,8 @@ def AgiLean_Matiere():
 
 @app.route('/AgiLean_Information', methods=['GET', 'POST'])
 def AgiLean_Information():
-	if not request.method == 'POST':
-		render_template('AgiLean_Information.html', commandes_client=BDD("SELECT id, Date, Modèle, Option, Etat_Lean, Etat_Client FROM COMMANDES"))
-
+	#if not request.method == 'POST':
+	return render_template('AgiLean_Information.html', commandes_client=BDD("SELECT id, Date, Modèle, Option, Etat_Lean, Etat_Client FROM COMMANDES"))
 
 #Pages AgiLog
 @app.route('/AgiLog_Matiere', methods=['GET', 'POST'])
