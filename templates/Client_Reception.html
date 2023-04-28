@@ -2,19 +2,23 @@
 <html>
   <head>
     <link rel="stylesheet" href='{{ url_for("static", filename="CSS_Client.css")}}'>
-    <title>Accueil - Client </title>
+    <title>Client - Reception </title>
   </head>
 
   <body>
     <header>
-      <div class="cadre">
-        <h1><center><i>Bienvenue sur la page Client</center></i></h1> 
-        <h2><center>Votre satisfaction est notre priorité n°1 !</center></h2>
+      <div >
+        <h1><center><i> Bienvenue dans l'espace Reception Commande du Client </center></i></h1> 
       </div> 
+      
       <nav>
         <ul>
-          <li><a class = "button1" href='{{url_for("Accueil")}}'><strong> Retour vers l'accueil </strong></a></li>
-          <li><a class = "button2" href='{{url_for("Client_Commande")}}'><strong> Passer Commande </strong></a></li>
+        <center>
+        <a class = "button" href='{{url_for("Accueil")}}'> Retourner à l'acceuil </a>
+        <br>
+        <br>
+        <a class = "button" href='{{url_for("Client_Commande")}}'> Passer une commande </a>
+        </center>
         </ul>
       </nav>
     </header>
