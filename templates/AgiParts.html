@@ -32,20 +32,21 @@
                     <th>Date</th>
                     <th>Modèle</th>
                     <th>Option</th>
+                    <th>Kit</th>
                     <th>Etat</th>
-                    <th>Satisfaction client</th>
                 </tr>
             
-                {% for element in commandes %}
-                    <tr class="lp_ligne">
-                        <td class="lp_cellule">{{ element['id'] }}</td>
-                        <td class="lp_cellule">{{ element['temps_commande_client'] }}</td>
-                        <td class="lp_cellule">{{ element['modele'] }}</td>
-                        <td class="lp_cellule">{{ element['option'] }}</td>
-                        <td class="lp_cellule">{{ element['etat_agilean'] }}</td>
-                        <td class="lp_cellule">{{ element['etat_client'] }}</td>
-                    </tr>
-                {% endfor %}  
+                {% for element in commande_agilog %}
+                <tr class="lp_ligne">
+                  <td class="lp_cellule">{{ element['id'] }}</td>
+                  <td class="lp_cellule">{{ element['Date'] }}</td>
+                  <td class="lp_cellule">{{ element['Modèle'] }}</td>
+                  <td class="lp_cellule">{{ element['Option'] }}</td>
+                  <td class="lp_cellule">{{ element['Kit'] }}</td>
+                  <td class="lp_cellule">{{ element['Etat'] }}</td>
+  
+                </tr>
+                {% endfor %}   
               
             </table>
             </div>
@@ -62,12 +63,10 @@
           <fieldset>
             <legend><h3>Expédition des commandes</h3></legend>
             <p><center>Veuillez entrer le numéro de la commande à expédier :</center></p>
-              <center>
-              <form>
-                <input type="text" name="numero_commande_AgiPart" value="numéro de commande ici">
-                <input type="submit" name="envoyer_numero_commande" value="Expédier">
-              </form>
-              </center>
+            <center>
+                <input type="number" name="numero" min="1">
+                <input type="submit" name="envoyer_numero_commande" value="Commander">
+            </center>
 
               <br><br>
 
@@ -78,20 +77,22 @@
                         <th>Date</th>
                         <th>Modèle</th>
                         <th>Option</th>
+                        <th>Kit</th>
                         <th>Etat</th>
-                        <th>Satisfaction client</th>
                     </tr>
                 
-                    {% for element in commandes %}
+                    {% for element in commande_agilog %}
+                        {% if element['Etat'] == 'traité' %}
                         <tr class="lp_ligne">
                             <td class="lp_cellule">{{ element['id'] }}</td>
-                            <td class="lp_cellule">{{ element['temps_commande_client'] }}</td>
-                            <td class="lp_cellule">{{ element['modele'] }}</td>
-                            <td class="lp_cellule">{{ element['option'] }}</td>
-                            <td class="lp_cellule">{{ element['etat_agilean'] }}</td>
-                            <td class="lp_cellule">{{ element['etat_client'] }}</td>
+                            <td class="lp_cellule">{{ element['Date'] }}</td>
+                            <td class="lp_cellule">{{ element['Modèle'] }}</td>
+                            <td class="lp_cellule">{{ element['Option'] }}</td>
+                            <td class="lp_cellule">{{ element['Kit'] }}</td>
+                            <td class="lp_cellule">{{ element['Etat'] }}</td>
                         </tr>
-                    {% endfor %}  
+                        {% endif %}
+                    {% endfor %}   
                   
                 </table>
                 </div>

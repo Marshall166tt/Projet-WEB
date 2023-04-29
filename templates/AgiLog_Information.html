@@ -4,6 +4,7 @@
     <link rel="stylesheet" href='{{ url_for("static", filename="CSS_AgiLog.css")}}'>
     <title>AgiLog - Information </title>
   </head>
+  
 
   <body>
     <header>
@@ -33,23 +34,23 @@
             <table>
               <tr>
                 <th>N° Commande</th>
-                <th>Date Commande Client</th>
+                <th>Date Commande</th>
                 <th>Modèle</th>
                 <th>Option</th>
+                <th>Kit</th>  
                 <th>Etat</th>
-                <th>Satisfaction client</th>
               </tr>
               
-            {% for element in commandes %}
-        		<tr class="lp_ligne">
-          			<td class="lp_cellule">{{ element['id'] }}</td>
-                    <td class="lp_cellule">{{ element['temps_commande_client'] }}</td>
-                    <td class="lp_cellule">{{ element['modele'] }}</td>
-                    <td class="lp_cellule">{{ element['option'] }}</td>
-                    <td class="lp_cellule">{{ element['etat_agilog'] }}</td>
-                    <td class="lp_cellule">{{ element['etat_client'] }}</td>
-        		</tr>
-      		  {% endfor %}  
+              {% for element in commande_agilean %}
+              <tr class="lp_ligne">
+                <td class="lp_cellule">{{ element['id'] }}</td>
+                <td class="lp_cellule">{{ element['Date'] }}</td>
+                <td class="lp_cellule">{{ element['Modèle'] }}</td>
+                <td class="lp_cellule">{{ element['Option'] }}</td>
+                <td class="lp_cellule">{{ element['Kit'] }}</td>
+                <td class="lp_cellule">{{ element['Etat'] }}</td>
+              </tr>
+              {% endfor %}   
                 
            </table>
            </div>
@@ -61,16 +62,14 @@
     </div>
 
     <div>
-      <form action='{{ url_for("AgiLean_Information") }}' method='POST'>
+      <form action='{{ url_for("AgiLog_Information") }}' method='POST'>
         <fieldset>
-          <legend><h3>Passer une commande à votre fournisseur</h3></legend>
+          <legend><h3>Passer une commande à AgiPart</h3></legend>
           <p><center>Veuillez entrer le numéro de commande client à traiter :</center></p>
-            <center>
-            <form>
-              <input type="text" name="numero_commande" value="numéro de commande ici">
+          <center>
+              <input type="number" name="numero" min="1">
               <input type="submit" name="envoyer_numero_commande" value="Commander">
-            </form>
-            </center>
+          </center>
         </fieldset>
       </form>
     </div>
@@ -85,23 +84,24 @@
             <table>
               <tr>
                 <th>N° Commande</th>
-                <th>Date Commande AgiLog</th>
+                <th>Date Commande</th>
                 <th>Modèle</th>
                 <th>Option</th>
+                <th>Kit</th>
                 <th>Etat</th>
-                <th>Satisfaction client</th>
               </tr>
               
-            {% for element in commandes %}
-        		<tr class="lp_ligne">
-          			<td class="lp_cellule">{{ element['id'] }}</td>
-                    <td class="lp_cellule">{{ element['temps_commande_client'] }}</td>
-                    <td class="lp_cellule">{{ element['modele'] }}</td>
-                    <td class="lp_cellule">{{ element['option'] }}</td>
-                    <td class="lp_cellule">{{ element['etat_agilean'] }}</td>
-                    <td class="lp_cellule">{{ element['etat_client'] }}</td>
-        		</tr>
-      		{% endfor %}  
+              {% for element in commande_agilog %}
+              <tr class="lp_ligne">
+                <td class="lp_cellule">{{ element['id'] }}</td>
+                <td class="lp_cellule">{{ element['Date'] }}</td>
+                <td class="lp_cellule">{{ element['Modèle'] }}</td>
+                <td class="lp_cellule">{{ element['Option'] }}</td>
+                <td class="lp_cellule">{{ element['Kit'] }}</td>
+                <td class="lp_cellule">{{ element['Etat'] }}</td>
+
+              </tr>
+              {% endfor %}  
                 
            </table>
            </div>
