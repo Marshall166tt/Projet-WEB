@@ -2,22 +2,21 @@
 <html>
     <head>
         <link rel="stylesheet" href='{{ url_for("static", filename="CSS_AgiLean.css")}}'>
-        <script src=""></script>
-        <title>Bienvenue dans l'espace AgiLean </title>
+        <title>AgiLean - Matiere </title>
     </head>
 
     <body>
         <header>
             <div class="cadre">
-                <h1><center>Bienvenue dans l'espace Matière de AgiLean</center></h1>
+                <h1><center>Bienvenue dans l'espace Réception Commande de AgiLean</center></h1>
             </div>
         
             <nav>
                 <ul>
                 <center>
-                    <a class = "button_accueil" href='{{url_for("Accueil")}}'><strong> Retour vers l'accueil </strong></a>
+                    <a class = "button" href='{{url_for("Accueil")}}'><strong> Retourner vers l'accueil </strong></a>
                     <br><br>
-                    <a class = "button_AgiLean_Information" href='{{url_for("AgiLean_Information")}}'><strong> Vers AgiLean Information </strong></a>
+                    <a class = "button" href='{{url_for("AgiLean_Information")}}'><strong> Passer une commande </strong></a>
                 </center>
                 </ul>
             </nav>

@@ -1,12 +1,28 @@
 <html>
   <head>
-    <title>Agilean</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href='{{ url_for("static", filename="CSS_AgiLog.css")}}'>
+    <title>Agilog - Matiere </title>
   </head>
 
   <body>
+    <header>
+      <div class="cadre">
+        <h1><center><i>Bienvenue dans l'espace Reception Commande de AgiLog</center></i></h1> 
+      </div> 
+  
+      <nav>
+        <ul>
+        <center>
+        <a class = "button" href='{{url_for("Accueil")}}'> Retourner vers l'accueil </a>
+        <br>
+        <br>
+        <a class = "button" href='{{url_for("AgiLog_Matiere")}}'> Receptionner une commande </a>
+        </cente
+        </ul>
+      </nav>
+    </header>
+
     <div class="grid-container1">
       <a class = "button1" href='{{url_for("Accueil")}}'><strong> ACCUEIL </strong></a>
       <a class = "button1" href='{{url_for("AgiLog_Matiere")}}'><strong> AGILOG </strong></a>

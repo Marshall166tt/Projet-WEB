@@ -2,23 +2,22 @@
 <html>
   <head>
     <link rel="stylesheet" href='{{ url_for("static", filename="CSS_AgiLog.css")}}'>
-
-    <title>Accueil - Client </title>
+    <title>AgiLog - Information </title>
   </head>
 
   <body>
     <header>
       <div class="cadre">
-        <h1><center><i>Bienvenue dans l'espace information de AgiLog</center></i></h1> 
+        <h1><center><i>Bienvenue dans l'espace Passer Commande de AgiLog</center></i></h1> 
       </div> 
       
       <nav>
         <ul>
         <center>
-        <a class = "button_accueil" href='{{url_for("Accueil")}}'> Retour vers l'accueil </a>
+        <a class = "button" href='{{url_for("Accueil")}}'> Retourner vers l'accueil </a>
         <br>
         <br>
-        <a class = "button_AgiLog_Matière" href='{{url_for("AgiLog_Matiere")}}'> Retour vers AgiLog Matière </a>
+        <a class = "button" href='{{url_for("AgiLog_Matiere")}}'> Receptionner une commande </a>
         </cente
         </ul>
       </nav>
