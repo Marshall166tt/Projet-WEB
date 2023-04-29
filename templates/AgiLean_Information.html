@@ -36,17 +36,15 @@
                 <th>Modèle</th>
                 <th>Option</th>
                 <th>Etat</th>
-                <th>Conformité / Validation Client</th>
               </tr>
               
-              {% for element in commandes_client %}
+              {% for element in commande_client %}
               <tr class="lp_ligne">
                 <td class="lp_cellule">{{ element['id'] }}</td>
                 <td class="lp_cellule">{{ element['Date'] }}</td>
                 <td class="lp_cellule">{{ element['Modèle'] }}</td>
                 <td class="lp_cellule">{{ element['Option'] }}</td>
-                <td class="lp_cellule">{{ element['Etat_Lean'] }}</td>
-                <td class="lp_cellule">{{ element['Etat_Client'] }}</td>
+                <td class="lp_cellule">{{ element['Etat'] }}</td>
               </tr>
               {% endfor %}
             </table>
@@ -61,10 +59,28 @@
           <legend><h3>Passer une commande à Agilog</h3></legend>
           <p><center>Veuillez entrer le numéro de commande client à traiter :</center></p>
             <center>
-            <form>
               <input type="number" name="numero_commande" min="1">
+            </center>
+          <p><center>Sellectionnez les kits associés à la commande :</center></p>
+            <center>
+              <div class="selector-container">
+                <input type="checkbox" name="1" value="True">kit 1
+                <input type="checkbox" name="2" value="True">kit 2
+                <input type="checkbox" name="3" value="True">kit 3
+                <input type="checkbox" name="4" value="True">kit 4
+                <input type="checkbox" name="5" value="True">kit 5
+                <input type="checkbox" name="6" value="True">kit 6
+                <input type="checkbox" name="7" value="True">kit 7
+                <input type="checkbox" name="8" value="True">kit 8
+                <input type="checkbox" name="9" value="True">kit 9
+                <input type="checkbox" name="10" value="True">kit 10
+                <input type="checkbox" name="11" value="True">kit 11
+                <input type="checkbox" name="12" value="True">kit 12
+                <input type="checkbox" name="13" value="True">kit 13
+                <input type="checkbox" name="14" value="True">kit 214
+                <br>
+              </div>
               <input type="submit" name="envoyer_numero_commande" value="Commander">
-            </form>
             </center>
         </fieldset>
       </form>
@@ -82,18 +98,18 @@
                 <th>Date Commande</th>
                 <th>Modèle</th>
                 <th>Option</th>
+                <th>Kit</th>
                 <th>Etat</th>
-                <th>Conformité / Validation Client</th>
               </tr>
               
-              {% for element in commandes %}
+              {% for element in commande_agilean %}
               <tr class="lp_ligne">
                 <td class="lp_cellule">{{ element['id'] }}</td>
                 <td class="lp_cellule">{{ element['Date'] }}</td>
                 <td class="lp_cellule">{{ element['Modèle'] }}</td>
                 <td class="lp_cellule">{{ element['Option'] }}</td>
-                <td class="lp_cellule">{{ element['Etat_Lean'] }}</td>
-                <td class="lp_cellule">{{ element['Etat_Client'] }}</td>
+                <td class="lp_cellule">{{ element['Kit'] }}</td>
+                <td class="lp_cellule">{{ element['Etat'] }}</td>
               </tr>
               {% endfor %}  
            </table>

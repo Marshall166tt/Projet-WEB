@@ -68,17 +68,15 @@
               <th>Modèle</th>
               <th>Option</th>
               <th>Etat</th>
-              <th>Conformité / Validation Client</th>
             </tr>
             
-            {% for element in commandes %}
+            {% for element in commande_client %}
             <tr class="lp_ligne">
               <td class="lp_cellule">{{ element['id'] }}</td>
               <td class="lp_cellule">{{ element['Date'] }}</td>
               <td class="lp_cellule">{{ element['Modèle'] }}</td>
               <td class="lp_cellule">{{ element['Option'] }}</td>
-              <td class="lp_cellule">{{ element['Etat_Lean'] }}</td>
-              <td class="lp_cellule">{{ element['Etat_Client'] }}</td>
+              <td class="lp_cellule">{{ element['Etat'] }}</td>
             </tr>
             {% endfor %}
 
