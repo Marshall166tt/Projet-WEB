@@ -24,7 +24,7 @@
     <div>
         <form action='{{ url_for("AgiParts") }}' method='POST'>
         <fieldset>
-            <legend><h3>Kits reçus</h3></legend>
+            <legend><h3>Commandes reçues</h3></legend>
             <div class="grid-container1">
             <table>
                 <tr>
@@ -37,15 +37,16 @@
                 </tr>
             
                 {% for element in commande_agilog %}
-                <tr class="lp_ligne">
-                  <td class="lp_cellule">{{ element['id'] }}</td>
-                  <td class="lp_cellule">{{ element['Date'] }}</td>
-                  <td class="lp_cellule">{{ element['Modèle'] }}</td>
-                  <td class="lp_cellule">{{ element['Option'] }}</td>
-                  <td class="lp_cellule">{{ element['Kit'] }}</td>
-                  <td class="lp_cellule">{{ element['Etat'] }}</td>
-  
-                </tr>
+                    {% if element['Etat'] == 'en attente' %}
+                        <tr class="lp_ligne">
+                            <td class="lp_cellule">{{ element['id'] }}</td>
+                            <td class="lp_cellule">{{ element['Date'] }}</td>
+                            <td class="lp_cellule">{{ element['Modèle'] }}</td>
+                            <td class="lp_cellule">{{ element['Option'] }}</td>
+                            <td class="lp_cellule">{{ element['Kit'] }}</td>
+                            <td class="lp_cellule">{{ element['Etat'] }}</td>
+                        </tr>
+                    {% endif %}   
                 {% endfor %}   
               
             </table>
@@ -57,16 +58,24 @@
         </form>
     </div>
 
-    <!--création de la partie expédition commande-->
+
     <div>
         <form action='{{ url_for("AgiParts") }}' method='POST'>
-          <fieldset>
-            <legend><h3>Expédition des commandes</h3></legend>
-            <p><center>Veuillez entrer le numéro de la commande à expédier :</center></p>
+            <fieldset>
+                <legend><h3>Traitement des commandes</h3></legend>
+                <p><center>Veuillez entrer le numéro de commande client expédiée :</center></p>
             <center>
                 <input type="number" name="numero" min="1">
                 <input type="submit" name="envoyer_numero_commande" value="Commander">
             </center>
+          </fieldset>
+        </form>
+      </div>
+    <!--création de la partie expédition commande-->
+    <div>
+        <form action='{{ url_for("AgiParts") }}' method='POST'>
+          <fieldset>
+            <legend><h3>Commandes envoyées</h3></legend>
 
               <br><br>
 
@@ -82,15 +91,15 @@
                     </tr>
                 
                     {% for element in commande_agilog %}
-                        {% if element['Etat'] == 'traité' %}
-                        <tr class="lp_ligne">
-                            <td class="lp_cellule">{{ element['id'] }}</td>
-                            <td class="lp_cellule">{{ element['Date'] }}</td>
-                            <td class="lp_cellule">{{ element['Modèle'] }}</td>
-                            <td class="lp_cellule">{{ element['Option'] }}</td>
-                            <td class="lp_cellule">{{ element['Kit'] }}</td>
-                            <td class="lp_cellule">{{ element['Etat'] }}</td>
-                        </tr>
+                        {% if element['Etat'] == 'traitée' %}
+                            <tr class="lp_ligne">
+                                <td class="lp_cellule">{{ element['id'] }}</td>
+                                <td class="lp_cellule">{{ element['Date'] }}</td>
+                                <td class="lp_cellule">{{ element['Modèle'] }}</td>
+                                <td class="lp_cellule">{{ element['Option'] }}</td>
+                                <td class="lp_cellule">{{ element['Kit'] }}</td>
+                                <td class="lp_cellule">{{ element['Etat'] }}</td>
+                            </tr>
                         {% endif %}
                     {% endfor %}   
                   

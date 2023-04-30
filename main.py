@@ -19,6 +19,7 @@ conn.row_factory = lite.Row
 cur = conn.cursor()
 cur.execute("DELETE FROM COMMANDE_CLIENT") #remet à zéro la table commande
 cur.execute("DELETE FROM COMMANDE_AGILEAN")
+cur.execute("DELETE FROM COMMANDE_AGILOG")
 conn.commit()
 cur.execute("UPDATE PIECES SET stock='' ") #remet à jour le stock à 0
 conn.commit()
@@ -158,7 +159,17 @@ def AgiLog_Information():
 #Pages AgiParts
 @app.route('/AgiParts', methods=['GET', 'POST'])
 def AgiParts():
-	return render_template('AgiParts.html', commande_agilog=BDD("SELECT id, Date, Modèle, Option, Kit, Etat FROM COMMANDE_AGILOG"))
+		if not request.method == 'POST':
+			return render_template('AgiParts.html', commande_agilog=BDD("SELECT id, Date, Modèle, Option, Kit, Etat FROM COMMANDE_AGILOG"))
+		else:
+			conn = lite.connect('BDD.db')
+			conn.row_factory = lite.Row
+			cur = conn.cursor()
+			num = request.form.get('numero', '')
+			cur.execute("UPDATE COMMANDE_AGILOG SET Etat = 'traitée' WHERE id = ?", (num,))
+			conn.commit()
+			conn.close()
+			return render_template('AgiParts.html', commande_agilog=BDD("SELECT id, Date, Modèle, Option, Kit, Etat FROM COMMANDE_AGILOG"))
 
 #Pages En Savoir Plus
 @app.route('/EnSavoirPlus', methods=['GET', 'POST'])
