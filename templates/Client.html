@@ -8,16 +8,13 @@
   <body>
     <header>
       <div >
-        <h1><center><i> Bienvenue dans l'espace Passer Commande du Client </center></i></h1> 
+        <h1><center><i> Bienvenue dans l'espace Client </center></i></h1> 
       </div> 
       
       <nav>
         <ul>
         <center>
         <a class = "button" href='{{url_for("Accueil")}}'> Retourner à l'acceuil </a>
-        <br>
-        <br>
-        <a class = "button" href='{{url_for("Client_Reception")}}'> Receptionner une commande </a>
         </center>
         </ul>
       </nav>
@@ -25,7 +22,7 @@
 
     <!-- on crée la boite permettant de passer une commande -->     
     <div>
-      <form action='{{ url_for("Client_Commande")}}' method='POST'>
+      <form action='{{ url_for("Client")}}' method='POST'>
         <fieldset>
           <legend><h3>Préparation de la commande</h3></legend>
           <div class="images-container">
@@ -71,19 +68,64 @@
             </tr>
             
             {% for element in commande_client %}
-            <tr class="lp_ligne">
-              <td class="lp_cellule">{{ element['id'] }}</td>
-              <td class="lp_cellule">{{ element['Date'] }}</td>
-              <td class="lp_cellule">{{ element['Modèle'] }}</td>
-              <td class="lp_cellule">{{ element['Option'] }}</td>
-              <td class="lp_cellule">{{ element['Etat'] }}</td>
+              {% if  element['Etat']!= 'validée' %}
+              <tr class="lp_ligne">
+                <td class="lp_cellule">{{ element['id'] }}</td>
+                <td class="lp_cellule">{{ element['Date'] }}</td>
+                <td class="lp_cellule">{{ element['Modèle'] }}</td>
+                <td class="lp_cellule">{{ element['Option'] }}</td>
+                <td class="lp_cellule">{{ element['Etat'] }}</td>
             </tr>
+              {% endif %}
             {% endfor %}
 
           </table>
         </div>
       </fieldset>
     </div>
+  
+    <div>
+      <form action='{{ url_for("Client") }}' method='POST'>
+          <fieldset>
+              <legend><h3>Valider les commandes</h3></legend>
+              <p><center>Veuillez valider les commandes conformes :</center></p>
+          <center>
+              <input type="number" name="valide" min="1">
+              <input type="submit" name="valider" value="Valider">
+          </center>
+        </fieldset>
+      </form>
+  </div>
+
+  <div>
+    <fieldset>
+      <legend><h3>Commandes Passées</h3></legend>
+      <div class="grid-container2">
+        <table>
+          <tr>
+            <th>N° Commande</th>
+            <th>Date Commande</th>
+            <th>Modèle</th>
+            <th>Option</th>
+            <th>Etat</th>
+          </tr>
+          
+          {% for element in commande_client %}
+            {% if  element['Etat']== 'validée' %}
+              <tr class="lp_ligne">
+                <td class="lp_cellule">{{ element['id'] }}</td>
+                <td class="lp_cellule">{{ element['Date'] }}</td>
+                <td class="lp_cellule">{{ element['Modèle'] }}</td>
+                <td class="lp_cellule">{{ element['Option'] }}</td>
+                <td class="lp_cellule">{{ element['Etat'] }}</td>
+              </tr>
+            {% endif %}
+          {% endfor %}
+
+        </table>
+      </div>
+    </fieldset>
+  </div>
 
 
     <footer>

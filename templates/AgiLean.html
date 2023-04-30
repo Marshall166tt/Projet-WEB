@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href='{{ url_for("static", filename="CSS_PW.css")}}'>
+    <title>AgiLean - Information </title>
+  </head>
+
+  <body>
+    <header>
+      <div >
+        <h1><center><i>Bienvenue dans l'espace AgiLean</center></i></h1> 
+      </div> 
+      
+      <nav>
+        <ul>
+        <center>
+        <a class = "button" href='{{url_for("Accueil")}}'> Retourner vers l'accueil </a>
+        </center>
+        </ul>
+      </nav>
+    </header>
+
+
+    <div>
+      <form action='{{ url_for("AgiLean") }}' method='POST'>
+          <fieldset>
+              <legend><h3>Envoye des commandes clients</h3></legend>
+              <p><center>Veuillez entrer le numéro de commande client à envoyer :</center></p>
+          <center>
+              <input type="number" name="envoye" min="1">
+              <input type="submit" name="envoyer" value="Envoyer">
+          </center>
+        </fieldset>
+      </form>
+  </div>
+  
+    <!-- création de l'affichage des commandes clients -->
+    <div>
+      <form action='{{ url_for("AgiLean") }}' method='POST'>
+        <fieldset>
+          <legend><h3>Commandes Client en attente</h3></legend>
+          <div class="grid-container2">
+            <table>
+              <tr>
+                <th>N° Commande</th>
+                <th>Date Commande</th>
+                <th>Modèle</th>
+                <th>Option</th>
+                <th>Etat</th>
+              </tr>
+              
+              {% for element in commande_client %}
+              <tr class="lp_ligne">
+                <td class="lp_cellule">{{ element['id'] }}</td>
+                <td class="lp_cellule">{{ element['Date'] }}</td>
+                <td class="lp_cellule">{{ element['Modèle'] }}</td>
+                <td class="lp_cellule">{{ element['Option'] }}</td>
+                <td class="lp_cellule">{{ element['Etat'] }}</td>
+              </tr>
+              {% endfor %}
+            </table>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+
+    <div>
+      <form action='{{ url_for("AgiLean") }}' method='POST'>
+        <fieldset>
+          <legend><h3>Passer une commande à Agilog</h3></legend>
+          <p><center>Veuillez entrer le numéro de commande client à traiter :</center></p>
+            <center>
+              <input type="number" name="commande" min="1">
+            </center>
+          <p><center>Sellectionnez les kits associés à la commande :</center></p>
+            <center>
+              <div class="selector-container">
+                <input type="checkbox" name="1" value="True">kit 1
+                <input type="checkbox" name="2" value="True">kit 2
+                <input type="checkbox" name="3" value="True">kit 3
+                <input type="checkbox" name="4" value="True">kit 4
+                <input type="checkbox" name="5" value="True">kit 5
+                <input type="checkbox" name="6" value="True">kit 6
+                <input type="checkbox" name="7" value="True">kit 7
+                <input type="checkbox" name="8" value="True">kit 8
+                <input type="checkbox" name="9" value="True">kit 9
+                <input type="checkbox" name="10" value="True">kit 10
+                <input type="checkbox" name="11" value="True">kit 11
+                <input type="checkbox" name="12" value="True">kit 12
+                <input type="checkbox" name="13" value="True">kit 13
+                <input type="checkbox" name="14" value="True">kit 14
+                <br>
+              </div>
+              <input type="submit" name="commander" value="Commander">
+            </center>
+        </fieldset>
+      </form>
+    </div>
+
+    <!-- création de l'affichage des commandes fournisseurs en attente -->
+    <div>
+      <form action='{{ url_for("AgiLean") }}' method='POST'>
+        <fieldset>
+          <legend><h3>Commandes fournisseur en attente</h3></legend>
+          <div class="grid-container3">
+            <table>
+              <tr>
+                <th>N° Commande</th>
+                <th>Date Commande</th>
+                <th>Modèle</th>
+                <th>Option</th>
+                <th>Kit</th>
+                <th>Etat</th>
+              </tr>
+              
+              {% for element in commande_agilean %}
+              <tr class="lp_ligne">
+                <td class="lp_cellule">{{ element['id'] }}</td>
+                <td class="lp_cellule">{{ element['Date'] }}</td>
+                <td class="lp_cellule">{{ element['Modèle'] }}</td>
+                <td class="lp_cellule">{{ element['Option'] }}</td>
+                <td class="lp_cellule">{{ element['Kit'] }}</td>
+                <td class="lp_cellule">{{ element['Etat'] }}</td>
+              </tr>
+              {% endfor %}  
+           </table>
+          </div>        
+        </fieldset>
+      </form>
+    </div>
+
+    <footer>
+      <h3><center>Nos filiales partenaires Agi Log, Agi Lean et Agi Parts sont fières d'être à votre service </center></h3>
+      <p><center>&copy; 2023 AM Aix-en-Provence</center></p>
+    </footer>
+
+  </body>
+
+</html>

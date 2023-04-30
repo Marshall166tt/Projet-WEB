@@ -20,6 +20,22 @@
         </nav>
     </header>
 
+
+
+
+    <div>
+        <form action='{{ url_for("AgiParts") }}' method='POST'>
+            <fieldset>
+                <legend><h3>Envoye des commandes AgiLog</h3></legend>
+                <p><center>Veuillez entrer le numéro de commande client à envoyé :</center></p>
+            <center>
+                <input type="number" name="envoye" min="1">
+                <input type="submit" name="envoyer" value="Envoyer">
+            </center>
+          </fieldset>
+        </form>
+    </div>
+
     <!-- création de la boite commandes Agilog en attente -->
     <div>
         <form action='{{ url_for("AgiParts") }}' method='POST'>
@@ -37,7 +53,6 @@
                 </tr>
             
                 {% for element in commande_agilog %}
-                    {% if element['Etat'] == 'en attente' %}
                         <tr class="lp_ligne">
                             <td class="lp_cellule">{{ element['id'] }}</td>
                             <td class="lp_cellule">{{ element['Date'] }}</td>
@@ -45,8 +60,7 @@
                             <td class="lp_cellule">{{ element['Option'] }}</td>
                             <td class="lp_cellule">{{ element['Kit'] }}</td>
                             <td class="lp_cellule">{{ element['Etat'] }}</td>
-                        </tr>
-                    {% endif %}   
+                        </tr>   
                 {% endfor %}   
               
             </table>
@@ -59,55 +73,6 @@
     </div>
 
 
-    <div>
-        <form action='{{ url_for("AgiParts") }}' method='POST'>
-            <fieldset>
-                <legend><h3>Traitement des commandes</h3></legend>
-                <p><center>Veuillez entrer le numéro de commande client expédiée :</center></p>
-            <center>
-                <input type="number" name="numero" min="1">
-                <input type="submit" name="envoyer_numero_commande" value="Commander">
-            </center>
-          </fieldset>
-        </form>
-      </div>
-    <!--création de la partie expédition commande-->
-    <div>
-        <form action='{{ url_for("AgiParts") }}' method='POST'>
-          <fieldset>
-            <legend><h3>Commandes envoyées</h3></legend>
-
-              <br><br>
-
-              <div class="grid-container1">
-                <table>
-                    <tr>
-                        <th>N° Commande</th>
-                        <th>Date</th>
-                        <th>Modèle</th>
-                        <th>Option</th>
-                        <th>Kit</th>
-                        <th>Etat</th>
-                    </tr>
-                
-                    {% for element in commande_agilog %}
-                        {% if element['Etat'] == 'traitée' %}
-                            <tr class="lp_ligne">
-                                <td class="lp_cellule">{{ element['id'] }}</td>
-                                <td class="lp_cellule">{{ element['Date'] }}</td>
-                                <td class="lp_cellule">{{ element['Modèle'] }}</td>
-                                <td class="lp_cellule">{{ element['Option'] }}</td>
-                                <td class="lp_cellule">{{ element['Kit'] }}</td>
-                                <td class="lp_cellule">{{ element['Etat'] }}</td>
-                            </tr>
-                        {% endif %}
-                    {% endfor %}   
-                  
-                </table>
-                </div>
-          </fieldset>
-        </form>
-      </div>
 
     <br><br>
     

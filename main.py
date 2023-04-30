@@ -56,15 +56,18 @@ def Accueil():
 	return render_template('Accueil.html') # utilisation du template html accueil
 
 #Pages Client
-@app.route('/Client_Commande', methods=['GET', 'POST'])
-def Client_Commande():
+@app.route('/Client', methods=['GET', 'POST'])
+def Client():
 	if not request.method == 'POST':
-		return render_template('Client_Commande.html', commande_client=BDD("SELECT id, Date, Modèle, Option, Etat FROM COMMANDE_CLIENT"))
-	else:
-		modele = request.form.get('modele', '')
-		option1 = request.form.get('Option1')
-		option2 = request.form.get('Option2')
-		option3 = request.form.get('Option3')
+		return render_template('Client.html', commande_client=BDD("SELECT id, Date, Modèle, Option, Etat FROM COMMANDE_CLIENT"))
+		
+	modele = request.form.get('modele', '')	
+	option1 = request.form.get('Option1')
+	option2 = request.form.get('Option2')
+	option3 = request.form.get('Option3')
+	num = request.form.get('valide', '')
+	if modele != '' :
+
 		#print(modele, option1, option2, option3, str(option1)+str(option2)+str(option3))
 		nbr = 0
 		if option3:
@@ -74,35 +77,54 @@ def Client_Commande():
 		if option1:
 			nbr += 1
 		option = format_num(nbr)
-
 		conn = lite.connect('BDD.db')
 		conn.row_factory = lite.Row
 		cur = conn.cursor()
-		cur.execute("INSERT INTO COMMANDE_CLIENT('Date', 'Modèle', 'Option', 'Etat') VALUES (?,?,?,?)", (int((time.time()-t)*100)/100, modele, option, "Commande passée",))
+		cur.execute("INSERT INTO COMMANDE_CLIENT('Date', 'Modèle', 'Option', 'Etat') VALUES (?,?,?,?)", (int((time.time()-t)*100)/100, modele, option, "en attente",))
 		conn.commit()
 		conn.close()
-		redirect(url_for('Client_Reception'))
-		return render_template('Client_Commande.html', commande_client = BDD("SELECT id, Date, Modèle, Option, Etat FROM COMMANDE_CLIENT"))
 
-@app.route('/Client_Reception', methods=['GET', 'POST'])
-def Client_Reception():
-	
-	return render_template('Client_Reception.html', commande_client=BDD("SELECT id, Date, Modèle, Option, Etat_Lean FROM COMMANDE_CLIENT"))
-
-#Pages AgiLean
-@app.route('/AgiLean_Matiere', methods=['GET', 'POST'])
-def AgiLean_Matiere():
-	return render_template('AgiLean_Matiere.html')
-
-@app.route('/AgiLean_Information', methods=['GET', 'POST'])
-def AgiLean_Information():
-	if not request.method == 'POST':
-		return render_template('AgiLean_Information.html', commande_client=BDD("SELECT id, Date, Modèle, Option, Etat FROM COMMANDE_CLIENT"), commande_agilean=BDD("SELECT id, Date, Modèle, Option, Kit, Etat FROM COMMANDE_AGILEAN"))
-	else:
+	if num != '' :
 		conn = lite.connect('BDD.db')
 		conn.row_factory = lite.Row
 		cur = conn.cursor()
-		id = request.form.get('numero_commande', '')
+		cur.execute("SELECT Etat FROM COMMANDE_CLIENT WHERE id=?", (num,))
+		row = cur.fetchone()
+		etat = row["Etat"]
+		if etat == "envoyée" : 
+			cur.execute("UPDATE COMMANDE_CLIENT SET Etat = 'validée' WHERE id = ?", (num,))
+		conn.commit()
+		conn.close()
+	return render_template('Client.html', commande_client = BDD("SELECT id, Date, Modèle, Option, Etat FROM COMMANDE_CLIENT"))
+
+#Pages AgiLean
+
+@app.route('/AgiLean', methods=['GET', 'POST'])
+def AgiLean():
+	if not request.method == 'POST':
+		return render_template('AgiLean.html', commande_client=BDD("SELECT id, Date, Modèle, Option, Etat FROM COMMANDE_CLIENT"), commande_agilean=BDD("SELECT id, Date, Modèle, Option, Kit, Etat FROM COMMANDE_AGILEAN"))
+	num = request.form.get('envoye', '')
+	id = request.form.get('commande', '')
+
+	if num is not None and num != '' :
+		conn = lite.connect('BDD.db')
+		conn.row_factory = lite.Row
+		cur = conn.cursor()
+		num = request.form.get('envoye', '')
+		cur.execute("SELECT Etat FROM COMMANDE_AGILEAN WHERE id=?", (num,))
+		row = cur.fetchone()
+		print(row)
+		etat = row["Etat"]
+		if etat == "envoyée" and etat!= None : 
+			cur.execute("UPDATE COMMANDE_CLIENT SET Etat = 'envoyée' WHERE id = ?", (num,))
+		conn.commit()
+		conn.close()
+
+	if id is not None and id != '' :
+		conn = lite.connect('BDD.db')
+		conn.row_factory = lite.Row
+		cur = conn.cursor()
+		id = request.form.get('commande', '')
 		id = int(id)
 		cur.execute("SELECT id, Date, Modèle, Option, Etat FROM COMMANDE_CLIENT WHERE id=?", (id,))
 		row = cur.fetchone()
@@ -110,7 +132,7 @@ def AgiLean_Information():
 		date = row["Date"]
 		modele = row["Modèle"]
 		option = row["Option"]
-		etat = row["Etat"]
+		etat = "en attente"
 
 		kit = ""
 		for i in range(1,15) : 
@@ -123,25 +145,36 @@ def AgiLean_Information():
 		conn.commit()
 		conn.close()
 		
-		return render_template('AgiLean_Information.html', commande_client=BDD("SELECT id, Date, Modèle, Option, Etat FROM COMMANDE_CLIENT"), commande_agilean=BDD("SELECT id, Date, Modèle, Option, Kit, Etat FROM COMMANDE_AGILEAN"))
+	return render_template('AgiLean.html', commande_client=BDD("SELECT id, Date, Modèle, Option, Etat FROM COMMANDE_CLIENT"), commande_agilean=BDD("SELECT id, Date, Modèle, Option, Kit, Etat FROM COMMANDE_AGILEAN"))
 
 #Pages AgiLog
-@app.route('/AgiLog_Matiere', methods=['GET', 'POST'])
-def AgiLog_Matiere():
-	return render_template('AgiLog_Matiere.html')
 
-@app.route('/AgiLog_Information', methods=['GET', 'POST'])
-def AgiLog_Information():
+@app.route('/AgiLog', methods=['GET', 'POST'])
+def AgiLog():
 	if not request.method == 'POST':
-		return render_template('AgiLog_Information.html', commande_agilean=BDD("SELECT id, Date, Modèle, Option, Kit, Etat FROM COMMANDE_AGILEAN"), commande_agilog=BDD("SELECT id, Date, Modèle, Option, Kit, Etat FROM COMMANDE_AGILOG"))
-	else:
+		return render_template('AgiLog.html', commande_agilean=BDD("SELECT id, Date, Modèle, Option, Kit, Etat FROM COMMANDE_AGILEAN"), commande_agilog=BDD("SELECT id, Date, Modèle, Option, Kit, Etat FROM COMMANDE_AGILOG"))
+	
+	num = request.form.get('envoye', '')
+	id = request.form.get('commande', '')
+	print("num",num,"id",id)
+
+	if num is not None and num != '' :
 		conn = lite.connect('BDD.db')
 		conn.row_factory = lite.Row
 		cur = conn.cursor()
-		num = request.form.get('numero', '')
-		print(num)
-		num = int(num)
-		cur.execute("SELECT id, Date, Modèle, Option, Kit, Etat FROM COMMANDE_AGILEAN WHERE id=?", (num,))
+		num = request.form.get('envoye', '')
+		cur.execute("UPDATE COMMANDE_AGILEAN SET Etat = 'envoyée' WHERE id = ?", (num,))
+		conn.commit()
+		conn.close()
+		return render_template('AgiLog.html', commande_agilean=BDD("SELECT id, Date, Modèle, Option, Etat FROM COMMANDE_AGILEAN"), commande_agilog=BDD("SELECT id, Date, Modèle, Option, Kit, Etat FROM COMMANDE_AGILOG"))
+
+	if  id != '' :
+		conn = lite.connect('BDD.db')
+		conn.row_factory = lite.Row
+		cur = conn.cursor()
+		id = request.form.get('commande', '')
+		id = int(id)
+		cur.execute("SELECT id, Date, Modèle, Option, Kit, Etat FROM COMMANDE_AGILEAN WHERE id=?", (id,))
 		row = cur.fetchone()
 		id = row["id"]
 		date = row["Date"]
@@ -149,27 +182,26 @@ def AgiLog_Information():
 		option = row["Option"]
 		kit = row["Kit"]
 		etat = row["Etat"]
-
-		cur.execute("INSERT INTO COMMANDE_AGILOG('id','Date', 'Modèle', 'Option', 'Kit', 'Etat') VALUES (?,?,?,?,?,?)", (num, date, modele, option, kit, etat))
+		cur.execute("INSERT INTO COMMANDE_AGILOG('id','Date', 'Modèle', 'Option', 'Kit', 'Etat') VALUES (?,?,?,?,?,?)", (id, date, modele, option, kit, etat))
 		conn.commit()
 		conn.close()
 		
-		return render_template('AgiLog_Information.html', commande_agilean=BDD("SELECT id, Date, Modèle, Option, Etat FROM COMMANDE_AGILEAN"), commande_agilog=BDD("SELECT id, Date, Modèle, Option, Kit, Etat FROM COMMANDE_AGILOG"))
+		return render_template('AgiLog.html', commande_agilean=BDD("SELECT id, Date, Modèle, Option, Etat FROM COMMANDE_AGILEAN"), commande_agilog=BDD("SELECT id, Date, Modèle, Option, Kit, Etat FROM COMMANDE_AGILOG"))
 
 #Pages AgiParts
 @app.route('/AgiParts', methods=['GET', 'POST'])
 def AgiParts():
-		if not request.method == 'POST':
-			return render_template('AgiParts.html', commande_agilog=BDD("SELECT id, Date, Modèle, Option, Kit, Etat FROM COMMANDE_AGILOG"))
-		else:
-			conn = lite.connect('BDD.db')
-			conn.row_factory = lite.Row
-			cur = conn.cursor()
-			num = request.form.get('numero', '')
-			cur.execute("UPDATE COMMANDE_AGILOG SET Etat = 'traitée' WHERE id = ?", (num,))
-			conn.commit()
-			conn.close()
-			return render_template('AgiParts.html', commande_agilog=BDD("SELECT id, Date, Modèle, Option, Kit, Etat FROM COMMANDE_AGILOG"))
+	if not request.method == 'POST':
+		return render_template('AgiParts.html', commande_agilog=BDD("SELECT id, Date, Modèle, Option, Kit, Etat FROM COMMANDE_AGILOG"))
+	else:
+		conn = lite.connect('BDD.db')
+		conn.row_factory = lite.Row
+		cur = conn.cursor()
+		num = request.form.get('envoye', '')
+		cur.execute("UPDATE COMMANDE_AGILOG SET Etat = 'envoyée' WHERE id = ?", (num,))
+		conn.commit()
+		conn.close()
+		return render_template('AgiParts.html', commande_agilog=BDD("SELECT id, Date, Modèle, Option, Kit, Etat FROM COMMANDE_AGILOG"))
 
 #Pages En Savoir Plus
 @app.route('/EnSavoirPlus', methods=['GET', 'POST'])
