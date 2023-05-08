@@ -27,7 +27,7 @@
     <div>
       <form action='{{ url_for("AgiLog") }}' method='POST'>
           <fieldset>
-              <legend><h3>Envoye des commandes AgiParts</h3></legend>
+              <legend><h3>Envoye des commandes AgiLean</h3></legend>
               <p><center>Veuillez entrer le numéro de commande client à envoyé :</center></p>
           <center>
               <input type="number" name="envoye" min="1">
@@ -78,8 +78,8 @@
     <div>
       <form action='{{ url_for("AgiLog") }}' method='POST'>
         <fieldset>
-          <legend><h3>Selection des demandes à traitées</h3></legend>
-          <p><center>Veuillez entrer le numéro de commande client à traiter :</center></p>
+          <legend><h3>Passer commande à AgiParts</h3></legend>
+          <p><center>Veuillez entrer le numéro de commande à traiter :</center></p>
           <center>
               <input type="number" name="commande" min="1">
               <input type="submit" name="commander" value="Commander">
